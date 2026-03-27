@@ -9,7 +9,7 @@ const PageHeader = ({ title, subtitle, breadcrumbs = [] }) => {
         <section className="relative w-full  py-15">
             <div className="absolute inset-0 z-0">
                 <img
-                    src="/header-img.png"
+                    src="/header-img.png"            
                     alt=""
                     className="w-full h-full object-center object-cover"
                 />
