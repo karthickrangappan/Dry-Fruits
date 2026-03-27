@@ -4,7 +4,6 @@ import { useShop } from '../context/ShopContext';
 
 const PrivateAuth = () => {
     const { user } = useShop();
-
     if (!user) {
         return <Navigate to="/login" replace />;
     }

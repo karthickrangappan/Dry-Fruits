@@ -18,23 +18,23 @@ const Footer = () => {
 
   const footerLinks = {
     shop: [
-      { name: 'Nuts', path: '/' },
-      { name: 'Dried Fruits', path: '/' },
-      { name: 'Seeds', path: '/' },
+      { name: 'Nuts', path: '/shop?category=Nuts' },
+      { name: 'Dried Fruits', path: '/shop?category=Dried%20Fruits' },
+      { name: 'Seeds', path: '/shop?category=Seeds' },
     ],
     support: [
-      { name: 'Order Status', path: '/' },
+      { name: 'Order Status', path: '/orders' },
       { name: 'Shipping Policy', path: '/' },
       { name: 'Return Policy', path: '/' },
       { name: 'FAQ', path: '/' },
-      { name: 'Contact Us', path: '/' }
+      { name: 'Contact Us', path: '/contact' }
     ],
     company: [
-      { name: 'About DryFruits', path: '/' },
-      { name: 'Our Nutrition', path: '/' },
+      { name: 'About DryFruits', path: '/about' },
+      { name: 'Our Nutrition', path: '/services' },
       { name: 'Privacy Policy', path: '/' },
       { name: 'Terms of Service', path: '/' },
-      { name: 'Wholesale', path: '/' }
+      { name: 'Wholesale', path: '/contact' }
     ]
   };
 
@@ -79,7 +79,7 @@ const Footer = () => {
 
           <div>
             <h4 className="text-white font-bold mb-6 tracking-wide">Shop Categories</h4>
-            <ul className="space-y-4">
+            <ul className="space-y-3">
               {footerLinks.shop.map((link) => (
                 <li key={link.name}>
                   <Link to={link.path} className="text-sm hover:text-amber-500 transition-colors duration-300">
@@ -92,7 +92,7 @@ const Footer = () => {
 
           <div>
             <h4 className="text-white font-bold mb-6 tracking-wide">Customer Care</h4>
-            <ul className="space-y-4">
+            <ul className="space-y-3">
               {footerLinks.support.map((link) => (
                 <li key={link.name}>
                   <Link to={link.path} className="text-sm hover:text-amber-500 transition-colors duration-300">

@@ -1,7 +1,7 @@
-import React from 'react';
-import { HiOutlineHeart, HiOutlineShoppingBag } from 'react-icons/hi';
-import { useShop } from '../../context/ShopContext';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { HiOutlineHeart, HiOutlineShoppingBag } from "react-icons/hi";
+import { useShop } from "../../context/ShopContext";
+import { useNavigate } from "react-router-dom";
 
 export const products = [
     {
@@ -116,7 +116,7 @@ export const products = [
         category: "Nuts",
         rating: "4.9",
         reviews: "312",
-        isNew: true 
+        isNew: true
     },
     {
         id: 11,
@@ -128,7 +128,7 @@ export const products = [
         category: "Seeds",
         rating: "4.9",
         reviews: "312",
-        isNew: true 
+        isNew: true
     },
     {
         id: 12,
@@ -140,77 +140,125 @@ export const products = [
         category: "Dates",
         rating: "4.9",
         reviews: "312",
-        isNew: true 
+        isNew: true
     }
-
 ];
 
-export const SingleProductCard = ({ product }) => {
-    const { toggleWishlist, addToCart, user } = useShop();
+export const ProductCard = ({ product }) => {
+    const { toggleWishlist, addToCart, user, clearCart } = useShop();
     const navigate = useNavigate();
 
-    const handleWishlistClick = () => {
-        if (!user) {
-            navigate('/login');
-            return;
-        }
-        toggleWishlist(product);
+    if (!product) {
+        return (
+            <div className="p-4 text-center text-gray-500 font-bold h-full flex items-center justify-center">
+                No product data provided.
+            </div>
+        );
     }
 
-    const handleAddToCart = () => {
-        if (!user) {
-            navigate('/login');
-            return;
-        }
+    const handleAddToCart = (e) => {
+        e.stopPropagation();
+        if (!user) return navigate('/login');
         addToCart(product);
-    }
+    };
 
+    const handleAddToWishlist = (e) => {
+        e.stopPropagation();
+        if (!user) return navigate('/login');
+        toggleWishlist(product);
+    };
+
+    const handleBuyNow = (e) => {
+        e.stopPropagation();
+        if (!user) return navigate('/login');
+        clearCart();
+        addToCart(product);
+        navigate('/checkout');
+    };
+
+    const handleNavigate = () => {
+        navigate(`/product/${product.id}`);
+    };
     return (
-        <div className='relative group shadow-xl rounded-2xl flex flex-col justify-between items-center p-10 bg-purple-100/30 hover:bg-purple-100/95 transition-all duration-500 h-full'>
-            <div className='w-full rounded-2xl h-50 overflow-hidden'>
-                <img src={product.image} alt={product.name}
-                    className='w-full h-full rounded-2xl object-cover hover:scale-110 transition-all duration-700 cursor-pointer'
-                />
-            </div>
-            <h3 className='text-xl font-bold text-amber-600 pt-4'>{product.name}</h3>
-            <p className='text-md font-bold text-amber-900'>{product.category}</p>
+        <div className="group relative rounded-[2rem] overflow-hidden bg-gradient-to-b from-white/50 to-white/50 shadow-md hover:shadow-2xl shadow-amber-100 transition-all duration-500 hover:-translate-y-3 border border-stone-100 flex flex-col h-full mx-auto w-full max-w-[320px] sm:max-w-none">
 
-            <div className='flex items-center gap-1 pt-5 pb-5'>
-                <p className='text-sm text-gray-600 font-bold'><span>MRP: </span> <span className='line-through text-gray-500'>₹{product.oldPrice}</span></p>
-                <p className='text-sm text-gray-700 font-bold'>₹{product.price}</p>
-            </div>
-
-            <div className='flex items-center gap-10'>
-                <p className='text-yellow-500 font-bold'><span className='text-gray-600'>Rating: </span>{product.rating}</p>
-                <button
-                    onClick={() => handleAddToCart(product)}
-                    className="px-5 py-2 bg-stone-100 text-stone-900 font-bold rounded-xl shadow-2xl shadow-amber-600/30 hover:bg-stone-300 transition-all duration-300 transform hover:-translate-y-0.5"
-                >
-                    <HiOutlineShoppingBag className='text-2xl' />
-                </button>
-            </div>
+            {product.isNew && (
+                <div className="absolute top-4 left-4 z-20">
+                    <span className="bg-amber-600 text-white text-[10px] font-black px-3 py-1.5 rounded-full tracking-widest shadow-lg uppercase">
+                        New
+                    </span>
+                </div>
+            )}
 
             <button
-                onClick={handleWishlistClick}
-                className='absolute right-6 top-6 opacity-0 translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 z-10'
+                onClick={handleAddToWishlist}
+                className="absolute top-4 right-4 z-30 bg-white/90 backdrop-blur-md p-2.5 rounded-full shadow-md opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500 hover:bg-rose-50 hover:scale-110 active:scale-95"
             >
-                <div className='p-2 rounded-full border bg-white border-red-200 text-red-600 hover:bg-red-50 transition-colors'>
-                    <HiOutlineHeart className='text-2xl' />
-                </div>
+                <HiOutlineHeart className="text-rose-500 text-xl" />
             </button>
-        </div>
-    );
-};
 
-const ProductCard = () => {
-    return (
-        <section className='max-w-7xl mx-auto bg-white pt-60 pb-10'>
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-5 md:p-10 gap-6 md:gap-10'>
-                {products.map((product) => (
-                    <SingleProductCard key={product.id} product={product} />
-                ))}
+            <button
+                onClick={handleAddToCart}
+                className="absolute top-16 right-4 z-30 bg-white/90 backdrop-blur-md p-2.5 rounded-full shadow-md opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500 hover:bg-emerald-50 hover:scale-110 active:scale-95"
+            >
+                <HiOutlineShoppingBag className="text-emerald-600 text-xl" />
+            </button>
+
+            <div
+                onClick={handleNavigate}
+                className="relative h-64 overflow-hidden cursor-pointer  "
+            >
+                <img
+                    src={product.image}
+                    alt={product.name}
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition duration-1000 ease-out"
+                />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                <span className="absolute bottom-4 left-4 z-20 bg-stone-900/80 backdrop-blur-md px-3 py-1 rounded-lg text-[10px] font-black text-amber-400 uppercase tracking-[0.2em]">
+                    {product.category}
+                </span>
             </div>
-        </section>
+
+            <div
+                onClick={handleNavigate}
+                className="p-6 flex flex-col gap-4 cursor-pointer flex-grow"
+            >
+                <div className="flex justify-between items-start gap-2">
+                    <h3 className="text-md font-black text-amber-800 group-hover:text-amber-900 transition-colors duration-300 min-h-[50px] line-clamp-2 leading-tight">
+                        {product.name}
+                    </h3>
+
+                    <div className="flex items-center gap-1 bg-amber-50 px-2 py-1 rounded-lg border border-amber-100 shrink-0">
+                        <span className="text-amber-500 text-xs text-[10px]">⭐</span>
+                        <span className="text-amber-900 text-[10px] font-black uppercase">
+                            {product.rating}
+                        </span>
+                    </div>
+                </div>
+
+                <div className="flex items-center justify-between mt-auto pt-4 border-t border-stone-100">
+                    <div className="flex flex-col">
+                        <span className="text-[10px] text-stone-400 line-through font-bold tracking-widest uppercase">
+                            ₹{product.oldPrice}
+                        </span>
+                        <div className="flex items-baseline gap-1">
+                            <span className="text-2xl font-black text-amber-900 tracking-tighter transition-colors group-hover:text-amber-600">
+                                ₹{product.price}
+                            </span>
+                        </div>
+                    </div>
+
+                    <button
+                        onClick={handleBuyNow}
+                        className="px-5 py-2.5 rounded-xl bg-amber-600 text-white text-xs font-black uppercase tracking-widest shadow-xl hover:bg-amber-700 hover:scale-105 active:scale-95 transition-all duration-300"
+                    >
+                        Buy Now
+                    </button>
+                </div>
+            </div>
+        </div>
     );
 };
 

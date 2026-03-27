@@ -1,66 +1,92 @@
 import React from "react";
 import { useShop } from "../context/ShopContext";
+import PageHeader from "../components/layout/PageHeader";
 
 const Profile = () => {
-    const { user } = useShop();
+    const { user, orders } = useShop();
 
     if (!user) {
         return (
-            <div className="max-w-4xl mx-auto p-12 text-center">
-                <h1 className="text-3xl font-bold">Please login to view profile</h1>
-            </div>
+            <main className="bg-stone-50 min-h-screen">
+                <PageHeader 
+                    title="Your Profile"
+                    subtitle="Access your personal dashbaord and manage your preferences."
+                    breadcrumbs={[{ name: "Profile" }]}
+                />
+                <div className="max-w-4xl mx-auto px-4 py-20 -mt-10 relative z-20">
+                    <div className="bg-white p-12 md:p-20 rounded-[3.5rem] shadow-2xl shadow-stone-200/50 border border-stone-100 text-center">
+                        <h1 className="text-3xl font-black text-stone-900 mb-4">Access Denied</h1>
+                        <p className="text-stone-500 font-medium">Please login to view your profile and manage your account.</p>
+                    </div>
+                </div>
+            </main>
         );
     }
 
     return (
-        <div className="max-w-4xl mx-auto py-18 px-4">
-            <div className="flex flex-col md:flex-row md:items-end justify-center gap-8 mb-16">
-                <div className="max-w-xl">
-                    <h1 className="text-4xl md:text-5xl font-black text-center text-stone-900 mb-4 tracking-tighter">
-                        Your <span className="text-amber-700">Profile</span>
-                    </h1>
-                    <p className="text-stone-500 font-medium text-lg">
-                        Keep track of all the nature's treats you love in one place.
-                    </p>
-                </div>
-            </div>
-            <div className="bg-white w-full p-10 rounded-3xl shadow-2xl overflow-hidden border border-stone-100">
-
-                <div className="p-10 -mt-10 overflow-visible">
-                    <div className="flex flex-col md:flex-row gap-8 items-start">
-                        <div className="w-32 h-32 rounded-full border-4 border-white bg-amber-100 flex items-center justify-center text-5xl text-amber-600 font-bold shadow-lg">
-                            {user.name?.[0]?.toUpperCase()}
+        <main className="bg-stone-50 min-h-screen pb-20">
+            <PageHeader 
+                title="Your Personal Dashboard"
+                subtitle="Manage your account details, track your nutritional journey, and view your order history."
+                breadcrumbs={[{ name: "Profile" }]}
+            />
+            
+            <section className="max-w-5xl mx-auto px-4 md:px-8 -mt-10 relative z-20">
+                <div className="bg-white p-10 md:p-16 rounded-[4rem] shadow-2xl shadow-stone-200/50 border border-stone-100">
+                    <div className="flex flex-col md:flex-row gap-12 items-center md:items-start">
+                        <div className="relative group">
+                            <div className="absolute inset-0 bg-amber-200 rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition-opacity" />
+                            <div className="w-40 h-40 rounded-full border-8 border-stone-50 bg-amber-100 flex items-center justify-center text-6xl text-amber-600 font-black shadow-xl relative z-10 transform transition-transform group-hover:scale-105">
+                                {user.name?.[0]?.toUpperCase()}
+                            </div>
                         </div>
 
-                        <div className="flex-1 space-y-6">
-                            <div>
-                                <label className="text-sm font-bold text-stone-500 uppercase tracking-widest">Name</label>
-                                <p className="text-2xl font-black text-stone-900">{user.name}</p>
+                        <div className="flex-1 space-y-8 w-full">
+                            <div className="border-b border-stone-100 pb-8 text-center md:text-left">
+                                <h1 className="text-4xl font-black text-stone-900 mb-2 tracking-tighter">{user.name}</h1>
+                                <p className="text-stone-400 font-bold uppercase tracking-widest text-xs flex items-center justify-center md:justify-start gap-2">
+                                    <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+                                    Active Member
+                                </p>
                             </div>
 
-                            <div>
-                                <label className="text-sm font-bold text-stone-500 uppercase tracking-widest">Email</label>
-                                <p className="text-xl font-bold text-stone-800">{user.email}</p>
-                            </div>
-
-                            <div className="pt-6 border-t border-stone-100">
-                                <h2 className="text-xl font-bold mb-4">Account Stats</h2>
-                                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                                    <div className="bg-stone-50 p-4 rounded-xl border border-stone-100">
-                                        <p className="text-stone-500 text-xs font-bold uppercase">Orders</p>
-                                        <p className="text-2xl font-black text-amber-600">0</p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div className="space-y-1">
+                                    <label className="text-[10px] font-black text-stone-400 uppercase tracking-[0.2em] px-1">Email Address</label>
+                                    <div className="bg-stone-50 p-5 rounded-2xl border border-stone-100 font-bold text-stone-800">
+                                        {user.email}
                                     </div>
-                                    <div className="bg-stone-50 p-4 rounded-xl border border-stone-100">
-                                        <p className="text-stone-500 text-xs font-bold uppercase">Membership</p>
-                                        <p className="text-2xl font-black text-green-600">Free</p>
+                                </div>
+                                <div className="space-y-1">
+                                    <label className="text-[10px] font-black text-stone-400 uppercase tracking-[0.2em] px-1">Account Type</label>
+                                    <div className="bg-stone-50 p-5 rounded-2xl border border-stone-100 font-bold text-amber-600">
+                                        Premium Customer
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="pt-8 border-t border-stone-100">
+                                <h2 className="text-xl font-black text-stone-900 mb-6 tracking-tight">Account Overview</h2>
+                                <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                                    <div className="bg-stone-50 p-6 rounded-3xl border border-stone-100 text-center hover:bg-white hover:shadow-xl transition-all group">
+                                        <p className="text-stone-400 text-[10px] font-black uppercase tracking-widest mb-2 group-hover:text-amber-600 transition-colors">Total Orders</p>
+                                        <p className="text-3xl font-black text-stone-900">{orders?.length || 0}</p>
+                                    </div>
+                                    <div className="bg-stone-50 p-6 rounded-3xl border border-stone-100 text-center hover:bg-white hover:shadow-xl transition-all group">
+                                        <p className="text-stone-400 text-[10px] font-black uppercase tracking-widest mb-2 group-hover:text-emerald-600 transition-colors">Rewards</p>
+                                        <p className="text-3xl font-black text-stone-900">0 pts</p>
+                                    </div>
+                                    <div className="bg-stone-50 p-6 rounded-3xl border border-stone-100 text-center hover:bg-white hover:shadow-xl transition-all group col-span-2 md:col-span-1">
+                                        <p className="text-stone-400 text-[10px] font-black uppercase tracking-widest mb-2 group-hover:text-blue-600 transition-colors">Status</p>
+                                        <p className="text-xl font-black text-emerald-600 uppercase tracking-tighter">Verified</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </section>
+        </main>
     );
 };
 

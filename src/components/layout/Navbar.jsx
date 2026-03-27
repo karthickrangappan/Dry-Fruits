@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useShop } from '../../context/ShopContext';
+import { products } from '../product/ProductCard';
 import {
     HiOutlineHeart,
     HiOutlineUser,
@@ -8,12 +9,17 @@ import {
     HiMenuAlt3,
     HiX,
     HiChevronDown,
-    HiLogout
+    HiLogout,
+    HiFilter
 } from 'react-icons/hi';
 
 const Navbar = () => {
     const { cartCount, wishlistCount, user, logout } = useShop();
     const [isOpen, setIsOpen] = useState(false);
+    const [catDropdown, setCatDropdown] = useState(false);
+    const [pagesDropdown, setPagesDropdown] = useState(false);
+    const dropdownRef = useRef(null);
+    const pagesRef = useRef(null);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -22,12 +28,42 @@ const Navbar = () => {
         navigate('/');
     };
 
+    const categories = [...new Set(products.map(p => p.category))];
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setCatDropdown(false);
+            }
+            if (pagesRef.current && !pagesRef.current.contains(event.target)) {
+                setPagesDropdown(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+
     const navLinks = [
         { name: 'Home', path: '/' },
         { name: 'Shop', path: '/shop' },
+        { name: 'Categories', path: '#', dropdownType: 'categories' },
+        { name: 'Pages', path: '#', dropdownType: 'pages' },
     ];
 
-    const isActive = (path) => location.pathname === path;
+    const additionalPages = [
+        { name: 'Services', path: '/services' },
+        { name: 'About Us', path: '/about' },
+        { name: 'Contact Us', path: '/contact' },
+    ];
+
+    const isPagesActive = () => additionalPages.some(p => location.pathname === p.path);
+    const isCategoriesActive = () => location.pathname.startsWith('/category/');
+
+    const isActive = (link) => {
+        if (link.dropdownType === 'pages') return isPagesActive();
+        if (link.dropdownType === 'categories') return isCategoriesActive();
+        return location.pathname === link.path;
+    };
 
     return (
         <nav className="fixed w-full z-50 transition-all duration-300 bg-stone-900 shadow-sm py-2">
@@ -45,22 +81,63 @@ const Navbar = () => {
                             <span className="text-2xl font-black text-amber-400 leading-none">
                                 Dry<span className="text-amber-600">Fruits</span>
                             </span>
-
                         </div>
                     </Link>
 
                     <div className="hidden lg:flex items-center gap-8">
                         {navLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                to={link.path}
-                                className={`group flex items-center gap-1 text-sm font-semibold tracking-wide transition-colors duration-300 ${isActive(link.path) ? 'text-amber-500' : 'text-stone-200 hover:text-white'
-                                    }`}
-                            >
-                                {link.name}
-                                {link.hasDropdown && <HiChevronDown className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" />}
-                                <div className={`h-0.5 bg-amber-600 transition-all duration-300 ${isActive(link.path) ? 'w-full' : 'w-0 group-hover:w-full'}`} />
-                            </Link>
+                            <div key={link.name} className="relative" ref={link.dropdownType === 'categories' ? dropdownRef : link.dropdownType === 'pages' ? pagesRef : null}>
+                                <button
+                                    onClick={() => {
+                                        if (link.dropdownType === 'categories') setCatDropdown(!catDropdown);
+                                        else if (link.dropdownType === 'pages') setPagesDropdown(!pagesDropdown);
+                                        else navigate(link.path);
+                                    }}
+                                    className={`group flex items-center gap-1 text-sm font-semibold tracking-wide transition-colors duration-300 ${isActive(link) ? 'text-amber-500' : 'text-stone-200 hover:text-white'
+                                        }`}
+                                >
+                                    {link.name}
+                                    {link.dropdownType && (
+                                        <HiChevronDown className={`w-4 h-4 transition-transform duration-300 ${(link.dropdownType === 'categories' && catDropdown) ||
+                                                (link.dropdownType === 'pages' && pagesDropdown) ? 'rotate-180' : ''}`} />
+                                    )}
+                                    <div className={`absolute -bottom-1 left-0 h-0.5 bg-amber-600 transition-all duration-300 ${isActive(link) ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+                                </button>
+
+                                {link.dropdownType === 'categories' && catDropdown && (
+                                    <div className="absolute top-full left-0 mt-4 w-48 bg-white rounded-xl shadow-2xl border border-stone-100 py-2 z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-300">
+                                        {categories.map((cat) => (
+                                            <button
+                                                key={cat}
+                                                onClick={() => {
+                                                    navigate(`/category/${cat}`);
+                                                    setCatDropdown(false);
+                                                }}
+                                                className="w-full text-left px-4 py-2 text-sm font-bold text-stone-600 hover:text-amber-600 hover:bg-amber-50 transition-colors"
+                                            >
+                                                {cat}
+                                            </button>
+                                        ))}
+                                    </div>
+                                )}
+
+                                {link.dropdownType === 'pages' && pagesDropdown && (
+                                    <div className="absolute top-full left-0 mt-4 w-48 bg-white rounded-xl shadow-2xl border border-stone-100 py-2 z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-300">
+                                        {additionalPages.map((page) => (
+                                            <button
+                                                key={page.name}
+                                                onClick={() => {
+                                                    navigate(page.path);
+                                                    setPagesDropdown(false);
+                                                }}
+                                                className="w-full text-left px-4 py-2 text-sm font-bold text-stone-600 hover:text-amber-600 hover:bg-amber-50 transition-colors"
+                                            >
+                                                {page.name}
+                                            </button>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
                         ))}
                     </div>
 
@@ -144,15 +221,60 @@ const Navbar = () => {
 
                     <div className="flex-1 overflow-y-auto py-8 px-6 space-y-6">
                         {navLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                to={link.path}
-                                className={`block text-lg font-medium transition-all ${isActive(link.path) ? 'text-amber-600 translate-x-2' : 'text-stone-700 hover:text-amber-600'
-                                    }`}
-                                onClick={() => setIsOpen(false)}
-                            >
-                                {link.name}
-                            </Link>
+                            <div key={link.name}>
+                                <button
+                                    onClick={() => {
+                                        if (link.dropdownType === 'categories') setCatDropdown(!catDropdown);
+                                        else if (link.dropdownType === 'pages') setPagesDropdown(!pagesDropdown);
+                                        else {
+                                            navigate(link.path);
+                                            setIsOpen(false);
+                                        }
+                                    }}
+                                    className={`flex items-center justify-between w-full text-lg font-medium transition-all ${isActive(link) ? 'text-amber-600 translate-x-2' : 'text-stone-700 hover:text-amber-600'
+                                        }`}
+                                >
+                                    {link.name}
+                                    {link.dropdownType && <HiChevronDown className={`w-5 h-5 transition-transform duration-300 ${(link.dropdownType === 'categories' && catDropdown) ||
+                                            (link.dropdownType === 'pages' && pagesDropdown) ? 'rotate-180' : ''}`} />}
+                                </button>
+
+                                {link.dropdownType === 'categories' && catDropdown && (
+                                    <div className="mt-2 ml-4 space-y-2 border-l-2 border-amber-100 pl-4">
+                                        {categories.map((cat) => (
+                                            <button
+                                                key={cat}
+                                                onClick={() => {
+                                                    navigate(`/category/${cat}`);
+                                                    setIsOpen(false);
+                                                    setCatDropdown(false);
+                                                }}
+                                                className="block w-full text-left text-sm font-bold text-stone-500 hover:text-amber-600 py-1"
+                                            >
+                                                {cat}
+                                            </button>
+                                        ))}
+                                    </div>
+                                )}
+
+                                {link.dropdownType === 'pages' && pagesDropdown && (
+                                    <div className="mt-2 ml-4 space-y-2 border-l-2 border-amber-100 pl-4">
+                                        {additionalPages.map((page) => (
+                                            <button
+                                                key={page.name}
+                                                onClick={() => {
+                                                    navigate(page.path);
+                                                    setIsOpen(false);
+                                                    setPagesDropdown(false);
+                                                }}
+                                                className="block w-full text-left text-sm font-bold text-stone-500 hover:text-amber-600 py-1"
+                                            >
+                                                {page.name}
+                                            </button>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
                         ))}
                         {user && (
                             <Link

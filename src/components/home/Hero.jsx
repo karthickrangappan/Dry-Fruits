@@ -1,86 +1,82 @@
 import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination, EffectFade } from 'swiper/modules';
-
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/effect-fade';
+import { Link } from 'react-router-dom';
+import { HiOutlineArrowRight, HiOutlineShoppingBag, HiSparkles } from 'react-icons/hi';
 
 const Hero = () => {
-    
-    const banners = [
-        {
-            id: 1,
-            title: "Premium Quality",
-            highlight: "Dry Fruits",
-            description: "Nature's finest treasures delivered to your doorstep. Experience the crunch and flavor of our handpicked selection.",
-            image: "/tamanna-rumee-uL8_OggN10w-unsplash.jpg",
-            buttonText: "Shop Collection"
-        },
-        {
-            id: 2,
-            title: "Organic & Healthy",
-            highlight: "Energy Mix",
-            description: "Boost your immunity with our specially curated organic nut mixes. Pure nutrition in every bite.",
-            image: "/anshu-a-rzozY5YpzA0-unsplash.jpg",
-            buttonText: "Explore Mixes"
-        },
-        {
-            id: 3,
-            title: "Festive Special",
-            highlight: "Grand Boxes",
-            description: "Perfect for gifting. Share the goodness of premium dry fruits with your loved ones this season.",
-            image: "/rabbixel-almond-3408466_1920.jpg",
-            buttonText: "Order Now"
-        }
-    ];
+  return (
+    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-stone-900">
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/hero-img.png"
+          alt="Premium Nature"
+          className="w-full h-full object-cover opacity-60 scale-105 transition-transform duration-[8000ms] hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-stone-900/70 via-transparent to-stone-900" />
+      </div>
 
-    return (
-        <div className="relative h-[600px] md:h-[750px] w-full overflow-hidden">
-            <Swiper
-                modules={[Autoplay, EffectFade]}
-                effect="fade"
-                autoplay={{ delay: 5000, disableOnInteraction: false }}
-                loop={true}
-                className="h-full w-full"
-            >
-                {banners.map((slide) => (
-                    <SwiperSlide key={slide.id}>
-                        <div className="relative h-full w-full flex items-center pb-50">
-                            <div 
-                                className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-[8000ms] scale-110 group-hover:scale-100"
-                                style={{ backgroundImage: `url(${slide.image})` }}
-                            >
-                                <div className="absolute inset-0 bg-stone-900/60" />
-                            </div>
+      <div className="absolute top-10 left-6 sm:top-20 sm:left-20 w-40 h-40 sm:w-64 sm:h-64 bg-amber-600/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-10 right-6 sm:bottom-20 sm:right-20 w-52 h-52 sm:w-80 sm:h-80 bg-stone-100/10 rounded-full blur-3xl animate-pulse delay-1000" />
 
-                            <div className="relative max-w-7xl mx-auto px-4 md:px-8 w-full z-10 text-center">
-                                <div className="max-w-3xl mx-auto">
-                                    <h4 className="text-amber-400 font-bold uppercase  tracking-[0.3em] mb-4 text-sm drop-shadow-md animate-fade-in-up">
-                                        {slide.title}
-                                    </h4>
-                                    <h2 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight drop-shadow-xl">
-                                        {slide.highlight.split(' ')[0]} <span className="text-amber-500">{slide.highlight.split(' ').slice(1).join(' ')}</span>
-                                    </h2>
-                                    <p className="text-lg md:text-xl text-stone-200 mb-10 leading-relaxed font-medium drop-shadow-md opacity-90 max-w-2xl mx-auto">
-                                        {slide.description}
-                                    </p>
-                                    <div className="flex flex-wrap justify-center gap-5">
-                                        <button className="px-8 py-4 bg-amber-600 text-white font-bold rounded-2xl shadow-2xl shadow-amber-600/30 hover:bg-amber-700 transform hover:-translate-y-1 transition-all duration-300">
-                                            {slide.buttonText}
-                                        </button>
-                                        <button className="px-8 py-4 bg-white/10 backdrop-blur-md text-white border border-white/20 font-bold rounded-2xl hover:bg-white/20 transform hover:-translate-y-1 transition-all duration-300">
-                                            Read More
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                ))}
-            </Swiper>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-10 text-center">
+        <div className="flex items-center justify-center gap-2 mb-6 sm:mb-8 animate-in fade-in slide-in-from-top-4 duration-700">
+          <HiSparkles className="text-amber-500 text-lg sm:text-xl" />
+          <span className="text-amber-400 font-black text-[9px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em]">
+            Nature's Exclusive Selection
+          </span>
+          <HiSparkles className="text-amber-500 text-lg sm:text-xl" />
         </div>
-    );
+
+        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white mb-6 sm:mb-10 leading-[0.9] tracking-tight drop-shadow-2xl">
+          NATURAL <br />
+          <span className="text-amber-600 italic font-serif">TREASURES</span>
+        </h1>
+
+        <p className="text-stone-300 text-sm sm:text-lg md:text-xl max-w-xl md:max-w-2xl mx-auto mb-10 sm:mb-14 leading-relaxed opacity-90">
+          Elevating your wellness journey with ethically sourced, sun-dried miracles from Earth's most pristine orchards.
+        </p>
+
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+          <Link
+            to="/shop"
+            className="group relative px-8 sm:px-10 md:px-12 py-3 sm:py-4 bg-amber-600 text-white font-bold rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl hover:shadow-amber-600/30 active:scale-95 transition-all"
+          >
+            <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity" />
+            <span className="relative z-10 uppercase tracking-wider text-xs sm:text-sm flex items-center gap-2">
+              Explore Collection <HiOutlineArrowRight />
+            </span>
+          </Link>
+
+          <Link
+            to="/services"
+            className="group px-6 sm:px-8 py-3 sm:py-4 border border-white/30 hover:border-white text-white font-bold rounded-2xl sm:rounded-3xl transition-all active:scale-95 flex items-center gap-2"
+          >
+            <HiOutlineShoppingBag className="text-lg opacity-70 group-hover:opacity-100 transition" />
+            <span className="uppercase tracking-wider text-xs sm:text-sm">Our Services</span>
+          </Link>
+        </div>
+
+        <div className="mt-14 sm:mt-20 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-10 opacity-50 hover:opacity-100 transition duration-500">
+          {[
+            { val: '100%', label: 'ORGANIC' },
+            { val: '12K+', label: 'COMMUNITY' },
+            { val: '50+', label: 'VARIETIES' },
+            { val: 'FREE', label: 'SHIPPING' }
+          ].map((stat, idx) => (
+            <div key={idx} className="text-center">
+              <p className="text-lg sm:text-xl md:text-2xl font-black text-white mb-1 hover:text-amber-500 transition-colors">
+                {stat.val}
+              </p>
+              <p className="text-[8px] sm:text-[10px] text-stone-400 uppercase tracking-widest">
+                {stat.label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      
+    </section>
+  );
 };
 
 export default Hero;

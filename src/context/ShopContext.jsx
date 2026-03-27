@@ -3,7 +3,7 @@ import React, { createContext, useState, useEffect, useContext } from 'react';
 export const ShopContext = createContext();
 
 export const ShopProvider = ({ children }) => {
-    
+
     const [cartItems, setCartItems] = useState(() => {
         const savedCart = localStorage.getItem('cartItems');
         return savedCart ? JSON.parse(savedCart) : [];
@@ -24,7 +24,6 @@ export const ShopProvider = ({ children }) => {
     useEffect(() => {
         if (user) {
             localStorage.setItem('user', JSON.stringify(user));
-            // Load user specific orders
             const savedOrders = localStorage.getItem(`orders_${user.email}`);
             setOrders(savedOrders ? JSON.parse(savedOrders) : []);
         } else {
@@ -36,7 +35,7 @@ export const ShopProvider = ({ children }) => {
     const addOrder = (orderDetails) => {
         const nextOrderNum = orders.length + 1;
         const formattedId = `#ORD${String(nextOrderNum).padStart(4, '0')}`;
-        
+
         const newOrder = {
             ...orderDetails,
             id: formattedId,
@@ -45,7 +44,7 @@ export const ShopProvider = ({ children }) => {
             items: [...cartItems],
             total: cartTotal
         };
-        
+
         setOrders(prev => {
             const updated = [newOrder, ...prev];
             if (user) {
@@ -56,19 +55,11 @@ export const ShopProvider = ({ children }) => {
         clearCart();
     };
 
-    useEffect(() => {
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    }, [cartItems]);
-
-    useEffect(() => {
-        localStorage.setItem('wishlistItems', JSON.stringify(wishlistItems));
-    }, [wishlistItems]);
-
     const addToCart = (product, quantity = 1) => {
         setCartItems(prevItems => {
             const existingItem = prevItems.find(item => item.id === product.id);
             if (existingItem) {
-                return prevItems.map(item => 
+                return prevItems.map(item =>
                     item.id === product.id ? { ...item, quantity: item.quantity + quantity } : item
                 );
             }
@@ -81,13 +72,13 @@ export const ShopProvider = ({ children }) => {
     };
 
     const incrementQuantity = (productId) => {
-        setCartItems(prevItems => 
+        setCartItems(prevItems =>
             prevItems.map(item => item.id === productId ? { ...item, quantity: item.quantity + 1 } : item)
         );
     };
 
     const decrementQuantity = (productId) => {
-        setCartItems(prevItems => 
+        setCartItems(prevItems =>
             prevItems.map(item => {
                 if (item.id === productId) {
                     const newQty = item.quantity - 1;
@@ -122,15 +113,63 @@ export const ShopProvider = ({ children }) => {
 
     const login = (userData) => {
         setUser(userData);
+        const savedUserCart = localStorage.getItem(`cart_${userData.email}`);
+        if (savedUserCart) {
+            const userItems = JSON.parse(savedUserCart);
+            setCartItems(prev => {
+                const merged = [...userItems];
+                prev.forEach(item => {
+                    const existing = merged.find(i => i.id === item.id);
+                    if (existing) {
+                        existing.quantity += item.quantity;
+                    } else {
+                        merged.push(item);
+                    }
+                });
+                return merged;
+            });
+        }
+
+        const savedUserWishlist = localStorage.getItem(`wishlist_${userData.email}`);
+        if (savedUserWishlist) {
+            const userWish = JSON.parse(savedUserWishlist);
+            setWishlistItems(prev => {
+                const merged = [...userWish];
+                prev.forEach(item => {
+                    if (!merged.some(i => i.id === item.id)) {
+                        merged.push(item);
+                    }
+                });
+                return merged;
+            });
+        }
     };
 
     const logout = () => {
         setUser(null);
-        clearCart(); 
+        clearCart();
         clearWishlist();
+        localStorage.removeItem('cartItems');
+        localStorage.removeItem('wishlistItems');
     };
 
-    const cartCount = cartItems.reduce((count, item) => count + item.quantity, 0);
+    useEffect(() => {
+        if (user) {
+            localStorage.setItem(`cart_${user.email}`, JSON.stringify(cartItems));
+        } else {
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        }
+    }, [cartItems, user]);
+
+    useEffect(() => {
+        if (user) {
+            localStorage.setItem(`wishlist_${user.email}`, JSON.stringify(wishlistItems));
+        } else {
+            localStorage.setItem('wishlistItems', JSON.stringify(wishlistItems));
+        }
+    }, [wishlistItems, user]);
+
+    const cartCount = cartItems.length;
     const wishlistCount = wishlistItems.length;
     const cartTotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
 
