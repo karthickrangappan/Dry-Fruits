@@ -13,7 +13,7 @@ import 'swiper/css/navigation';
 const ProductDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { addToCart, toggleWishlist, user, clearCart } = useShop();
+    const { addToCart, toggleWishlist, user, clearCart, setImmediateCheckout } = useShop();
     const [localQuantity, setLocalQuantity] = React.useState(1);
 
     const product = products.find(p => p.id === Number(id));
@@ -55,8 +55,7 @@ const ProductDetails = () => {
 
     const handleBuyNow = () => {
         if (!user) return navigate('/login');
-        clearCart();
-        addToCart(product, localQuantity);
+        setImmediateCheckout(product, localQuantity);
         navigate('/checkout');
     };
 
@@ -136,18 +135,7 @@ const ProductDetails = () => {
 
                             <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3 pt-4">
 
-                                {/* Buy Button */}
-                                <button
-                                    onClick={handleBuyNow}
-                                    className="col-span-2 sm:col-span-2 lg:col-span-2 flex items-center justify-center gap-2 
-        bg-stone-900 text-white py-3 sm:py-4 lg:py-5 
-        rounded-xl sm:rounded-2xl lg:rounded-3xl 
-        font-bold uppercase tracking-wider text-[10px] sm:text-xs lg:text-sm
-        hover:bg-amber-600 transition-all transform hover:-translate-y-1 active:scale-95 
-        shadow-lg"
-                                >
-                                    Proceed to Buy
-                                </button>
+
 
                                 <div className="col-span-2 sm:col-span-2 lg:col-span-2 flex items-center justify-between 
                                                 bg-white rounded-xl sm:rounded-2xl lg:rounded-3xl 
@@ -172,6 +160,17 @@ const ProductDetails = () => {
                                         <HiPlus className="w-4 h-4 sm:w-5 sm:h-5" />
                                     </button>
                                 </div>
+                                <button
+                                    onClick={handleBuyNow}
+                                    className="col-span-2 sm:col-span-2 lg:col-span-2 flex items-center justify-center gap-2 
+                                                bg-stone-900 text-white py-3 sm:py-4 lg:py-5 
+                                                rounded-xl sm:rounded-2xl lg:rounded-3xl 
+                                                font-bold uppercase tracking-wider text-[10px] sm:text-xs lg:text-sm
+                                                hover:bg-amber-600 transition-all transform hover:-translate-y-1 active:scale-95 
+                                                shadow-lg"
+                                >
+                                    Proceed to Buy
+                                </button>
 
                                 <button
                                     onClick={handleAddToCart}

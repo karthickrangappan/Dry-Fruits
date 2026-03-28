@@ -101,7 +101,7 @@ const Navbar = () => {
                                         <HiChevronDown className={`w-4 h-4 transition-transform duration-300 ${(link.dropdownType === 'categories' && catDropdown) ||
                                                 (link.dropdownType === 'pages' && pagesDropdown) ? 'rotate-180' : ''}`} />
                                     )}
-                                    <div className={`absolute -bottom-1 left-0 h-0.5 bg-amber-600 transition-all duration-300 ${isActive(link) ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+                                    <div className={`absolute -bottom-1 left-1/2 -translate-x-1/2 h-0.5 bg-amber-600 transition-all duration-300 ${isActive(link) ? 'w-3/5' : 'w-0 group-hover:w-3/5'}`} />
                                 </button>
 
                                 {link.dropdownType === 'categories' && catDropdown && (

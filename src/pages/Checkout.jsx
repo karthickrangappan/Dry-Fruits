@@ -4,8 +4,16 @@ import { useNavigate } from "react-router-dom";
 import PageHeader from "../components/layout/PageHeader";
 
 const Checkout = () => {
-    const { cartItems, cartTotal, user, addOrder } = useContext(ShopContext);
+    const { checkoutItems, user, addOrder, showToast } = useContext(ShopContext);
     const navigate = useNavigate();
+
+    const currentCheckoutTotal = checkoutItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+
+    useEffect(() => {
+        if (checkoutItems.length === 0) {
+            navigate('/');
+        }
+    }, [checkoutItems, navigate]);
 
     const [paymentMethod, setPaymentMethod] = useState("cod");
     const [formData, setFormData] = useState({
@@ -40,24 +48,24 @@ const Checkout = () => {
 
     const handlePlaceOrder = () => {
         if (!user) {
-            alert("Please login to continue");
+            showToast("Please login to continue");
             return;
         }
 
-        if (cartItems.length === 0) {
-            alert("Cart is empty");
+        if (checkoutItems.length === 0) {
+            showToast("Checkout is empty");
             return;
         }
 
         const { fullName, email, address, city, postalCode } = formData;
         if (!fullName || !email || !address || !city || !postalCode) {
-            alert("Please fill in all the billing details");
+            showToast("Please fill in all the billing details");
             return;
         }
 
         if (paymentMethod === "cod") {
             addOrder(formData);
-            alert("Order placed successfully with Cash on Delivery ✅");
+            showToast("Order placed successfully with Cash on Delivery ✅");
             navigate("/orders");
         } else {
             handleRazorpay();
@@ -66,19 +74,19 @@ const Checkout = () => {
 
     const handleRazorpay = () => {
         if (!window.Razorpay) {
-            alert("Razorpay SDK failed to load.");
+            showToast("Razorpay SDK failed to load.");
             return;
         }
 
         const options = {
             key: "rzp_test_2ORD27rb7vGhwj",
-            amount: cartTotal * 100,
+            amount: currentCheckoutTotal * 100,
             currency: "INR",
             name: "Dry Fruits Shop",
             description: "Order Payment",
             handler: function (response) {
                 addOrder(formData);
-                alert("Payment successful \nPayment ID: " + response.razorpay_payment_id);
+                showToast("Payment successful! Order Placed ✅");
                 navigate("/orders");
             },
             prefill: {
@@ -224,7 +232,7 @@ const Checkout = () => {
                                 </h2>
 
                                 <div className="space-y-6 mb-10 max-h-[300px] overflow-y-auto pr-2">
-                                    {cartItems.map((item) => (
+                                    {checkoutItems.map((item) => (
                                         <div key={item.id} className="flex justify-between">
                                             <div>
                                                 <p className="font-semibold">{item.name}</p>
@@ -238,7 +246,7 @@ const Checkout = () => {
                                 <div className="space-y-4 pt-6 border-t">
                                     <div className="flex justify-between text-sm">
                                         <span>Subtotal</span>
-                                        <span>₹{cartTotal}</span>
+                                        <span>₹{currentCheckoutTotal}</span>
                                     </div>
 
                                     <div className="flex justify-between text-sm">
@@ -248,7 +256,7 @@ const Checkout = () => {
 
                                     <div className="flex justify-between text-xl font-bold pt-4">
                                         <span>Total</span>
-                                        <span>₹{cartTotal}</span>
+                                        <span>₹{currentCheckoutTotal}</span>
                                     </div>
                                 </div>
 

@@ -22,10 +22,23 @@ export const ShopProvider = ({ children }) => {
 
     const [orders, setOrders] = useState([]);
     const [toast, setToast] = useState(null);
+    const [toastTimeout, setToastTimeout] = useState(null);
+    const [checkoutItems, setCheckoutItems] = useState([]);
+
+    const dismissToast = () => {
+        if (toastTimeout) clearTimeout(toastTimeout);
+        setToast(null);
+        setToastTimeout(null);
+    };
 
     const showToast = (message) => {
+        dismissToast();
         setToast(message);
-        setTimeout(() => setToast(null), 3000);
+        const timeout = setTimeout(() => {
+            setToast(null);
+            setToastTimeout(null);
+        }, 3000);
+        setToastTimeout(timeout);
     };
 
     useEffect(() => {
@@ -42,14 +55,16 @@ export const ShopProvider = ({ children }) => {
     const addOrder = (orderDetails) => {
         const nextOrderNum = orders.length + 1;
         const formattedId = `#ORD${String(nextOrderNum).padStart(4, '0')}`;
+        
+        const currentCheckoutTotal = checkoutItems.reduce((total, item) => total + (item.price * item.quantity), 0);
 
         const newOrder = {
             ...orderDetails,
             id: formattedId,
             date: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }),
             status: 'Processing',
-            items: [...cartItems],
-            total: cartTotal
+            items: [...checkoutItems],
+            total: currentCheckoutTotal
         };
 
         setOrders(prev => {
@@ -59,7 +74,14 @@ export const ShopProvider = ({ children }) => {
             }
             return updated;
         });
-        clearCart();
+
+        const isCartCheckout = checkoutItems.length === cartItems.length && 
+                              checkoutItems.every((item, index) => item.id === cartItems[index].id);
+        
+        if (isCartCheckout) {
+            clearCart();
+        }
+        setCheckoutItems([]);
     };
 
     const addToCart = (product, quantity = 1) => {
@@ -99,6 +121,12 @@ export const ShopProvider = ({ children }) => {
     };
 
     const clearCart = () => setCartItems([]);
+    const setImmediateCheckout = (product, quantity = 1) => {
+        setCheckoutItems([{ ...product, quantity }]);
+    };
+    const setCartCheckout = () => {
+        setCheckoutItems([...cartItems]);
+    };
     const clearWishlist = () => setWishlistItems([]);
 
     const addToWishlist = (product) => {
@@ -195,6 +223,10 @@ export const ShopProvider = ({ children }) => {
         incrementQuantity,
         decrementQuantity,
         clearCart,
+        checkoutItems,
+        setImmediateCheckout,
+        setCartCheckout,
+        setCheckoutItems,
         addToWishlist,
         removeFromWishlist,
         toggleWishlist,
@@ -202,7 +234,9 @@ export const ShopProvider = ({ children }) => {
         logout,
         cartCount,
         wishlistCount,
-        cartTotal
+        cartTotal,
+        showToast,
+        dismissToast
     };
 
     return (
@@ -212,7 +246,7 @@ export const ShopProvider = ({ children }) => {
                 <div className="fixed top-24 right-4 z-[100] animate-in fade-in slide-in-from-right-5 duration-300">
                     <div className="bg-white border-2 border-stone-900 text-stone-900 px-6 py-4 rounded-2xl flex items-center gap-4 min-w-[280px]">
                         <p className="flex-1 text-xs font-black uppercase tracking-widest">{toast}</p>
-                        <button onClick={() => setToast(null)} className="hover:rotate-90 transition-transform">
+                        <button onClick={dismissToast} className="hover:rotate-90 transition-transform">
                             <HiX className="text-xl" />
                         </button>
                     </div>

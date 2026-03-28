@@ -7,7 +7,7 @@ const categories = [
     {
         name: "Nuts",
         description: "Premium selection of almonds, cashews, and more.",
-        image: "https://kavisdryfruits.com/uploads/f_691ec108c5aaf3.47190729.png",
+        image: "https://kavisdryfruits.com/uploads/f_691ee9fb1328e8.71101389.png",
         count: products.filter(p => p.category === "Nuts").length
     },
     {
@@ -27,6 +27,12 @@ const categories = [
         description: "Nutritious and crunchy seeds for a healthy lifestyle.",
         image: "https://kavisdryfruits.com/uploads/f_691ee7641b6094.37281592.png",
         count: products.filter(p => p.category === "Seeds").length
+    },
+    {
+        name: "Raisins",
+        description: "Golden raisins are small, sweet, and chewy dried grapes. They have a bright yellow to golden color and a delightful tangy-sweet flavor.",
+        image: "https://kavisdryfruits.com/uploads/f_691eeb2e022154.89898460.png",
+        count: products.filter(p => p.category === "Raisins").length
     }
 ];
 

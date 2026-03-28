@@ -77,12 +77,13 @@ const Footer = () => {
             </div>
           </div>
 
-          <div  className='pl-18'>
-            <h4 className="text-white text-sm md:text-base font-bold mb-6 tracking-wide">Shop Categories</h4>
-            <ul className="space-y-3">
+          <div className="md:pl-8 lg:pl-12">
+            <h4 className="text-white text-sm md:text-base font-bold mb-6 tracking-wide uppercase">Shop Categories</h4>
+            <ul className="space-y-4">
               {footerLinks.shop.map((link) => (
                 <li key={link.name}>
-                  <Link to={link.path} className="text-sm hover:text-amber-500 transition-colors duration-300">
+                  <Link to={link.path} className="text-sm group flex items-center gap-3 hover:text-amber-500 transition-colors duration-300">
+                    <FaArrowRight className="w-3 h-3 text-amber-600/50 group-hover:text-amber-500 transition-colors" />
                     {link.name}
                   </Link>
                 </li>
@@ -90,12 +91,13 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className='pl-15'>
-            <h4 className="text-white text-sm md:text-base font-bold mb-6 tracking-wide">Customer Care</h4>
-            <ul className="space-y-3">
+          <div className="md:pl-8 lg:pl-12">
+            <h4 className="text-white text-sm md:text-base font-bold mb-6 tracking-wide uppercase">Customer Care</h4>
+            <ul className="space-y-4">
               {footerLinks.support.map((link) => (
                 <li key={link.name}>
-                  <Link to={link.path} className="text-sm hover:text-amber-500 transition-colors duration-300">
+                  <Link to={link.path} className="text-sm group flex items-center gap-3 hover:text-amber-500 transition-colors duration-300">
+                    <FaArrowRight className="w-3 h-3 text-amber-600/50 group-hover:text-amber-500 transition-colors" />
                     {link.name}
                   </Link>
                 </li>
@@ -103,8 +105,8 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="md:col-span-2 lg:col-span-1 xl:col-span-2 pl-15">
-            <h4 className="text-white text-sm md:text-base font-bold mb-6 tracking-wide">Stay Healthy</h4>
+          <div className="md:col-span-2 lg:col-span-1 xl:col-span-2 md:pl-8 lg:pl-12">
+            <h4 className="text-white text-sm md:text-base font-bold mb-6 tracking-wide uppercase">Stay Healthy</h4>
             <p className="text-stone-400 text-[10px] md:text-sm mb-6 max-w-sm">
               Subscribe to receive wellness tips, nutritional guides, and exclusive offers.
             </p>

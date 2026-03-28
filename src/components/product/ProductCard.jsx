@@ -6,35 +6,35 @@ import { useNavigate } from "react-router-dom";
 export const products = [
     {
         id: 1,
-        name: "Classic Almonds",
-        description: "Handpicked premium California almonds, perfectly roasted.",
+        name: "Golden Raisins (100g)",
+        description: "Golden raisins are small, sweet, and chewy dried grapes. They have a bright yellow to golden color and a delightful tangy-sweet flavor. Rich in natural sugars, antioxidants, and fiber, they are a popular snack and ingredient in baking, cooking, and trail mixes.",
         price: 50.00,
         oldPrice: 100.00,
-        image: "https://images.unsplash.com/photo-1508061253366-f7da158b6d46?auto=format&fit=crop&q=80&w=800",
-        category: "Nuts",
+        image: "https://kavisdryfruits.com/uploads/f_691eeb2e022154.89898460.png",
+        category: "Raisins",
         rating: "4.9",
         reviews: "245",
         isNew: true
     },
     {
         id: 2,
-        name: "Premium Cashews",
-        description: "Whole jumbo cashews, naturally sweet and crunchy.",
+        name: "Black Raisins (100g)",
+        description: "Black raisins are dried grapes that are dark purple to black in color. They are known for their intense sweetness, chewy texture, and rich flavor. Packed with antioxidants, fiber, and essential minerals, black raisins are a healthy and delicious snack option. They are commonly used in baking, cooking, and as a natural sweetener in various dishes.",
         price: 45.00,
         oldPrice: 60.00,
-        image: "https://images.unsplash.com/photo-1600189083288-89e1c8b9b0cc?auto=format&fit=crop&q=80&w=800",
-        category: "Nuts",
+        image: "https://kavisdryfruits.com/uploads/f_691eeb81483cc3.86902715.png",
+        category: "Raisins",
         rating: "4.8",
         reviews: "189"
     },
     {
         id: 3,
-        name: "Turkish Apricots",
-        description: "Sun-dried golden apricots from the heart of Turkey.",
+        name: "Almonds (100 G)",
+        description: "Almonds are nutrient-dense nuts known for their rich, buttery flavor and satisfying crunch. They are an excellent source of healthy fats, protein, fiber, vitamin E, and magnesium. Almonds support heart health, aid in weight management, and provide sustained energy. They are versatile and can be enjoyed raw, roasted, or used in various culinary applications.",
         price: 40.00,
         oldPrice: 60.00,
-        image: "https://images.unsplash.com/photo-1596591606975-97ee5cef3a1e?auto=format&fit=crop&q=80&w=800",
-        category: "Dried Fruits",
+        image: "https://kavisdryfruits.com/uploads/f_691ee9fb1328e8.71101389.png",
+        category: "Nuts",
         rating: "4.7",
         reviews: "156"
     },
@@ -141,11 +141,59 @@ export const products = [
         rating: "4.9",
         reviews: "312",
         isNew: true
+    },
+    {
+        id: 13,
+        name: "Plain Pistachios (100g)",
+        description: "Premium pistachios, carefully selected for quality and freshness.",
+        price: 45.00,
+        oldPrice: 65.00,
+        image: "https://kavisdryfruits.com/uploads/f_691ee94bdbeb68.28943294.png",
+        category: "Nuts",
+        rating: "4.9",
+        reviews: "312",
+        isNew: true
+    },
+    {
+        id: 14,
+        name: "Cashews (100g)",
+        description: "Premium cashews, carefully selected for quality and freshness.",
+        price: 45.00,
+        oldPrice: 65.00,
+        image: "https://kavisdryfruits.com/uploads/f_691ee8024529d4.89158284.png",
+        category: "Nuts",
+        rating: "4.9",
+        reviews: "312",
+        isNew: true
+    },
+    {
+        id: 15,
+        name: "Almond Gum (Badam Pisin) (100G)",
+        description: "Premium Almond Gum (Badam Pisin), carefully selected for quality and freshness.",
+        price: 45.00,
+        oldPrice: 65.00,
+        image: "https://kavisdryfruits.com/uploads/f_691ee65a9508b8.37497091.png",
+        category: "Nuts",
+        rating: "4.9",
+        reviews: "312",
+        isNew: true
+    },
+     {
+        id: 16,
+        name: "Chia Seeds (100g)",
+        description: "Premium Chia Seeds, carefully selected for quality and freshness.",
+        price: 45.00,   
+        oldPrice: 65.00,
+        image: "https://kavisdryfruits.com/uploads/f_691eeaeee855e9.00305836.png",
+        category: "Seeds",
+        rating: "4.9",
+        reviews: "312",
+        isNew: true
     }
 ];
 
 export const ProductCard = ({ product }) => {
-    const { toggleWishlist, addToCart, user, clearCart } = useShop();
+    const { toggleWishlist, addToCart, user, clearCart, setImmediateCheckout } = useShop();
     const navigate = useNavigate();
 
     if (!product) {
@@ -171,8 +219,7 @@ export const ProductCard = ({ product }) => {
     const handleBuyNow = (e) => {
         e.stopPropagation();
         if (!user) return navigate('/login');
-        clearCart();
-        addToCart(product);
+        setImmediateCheckout(product);
         navigate('/checkout');
     };
 

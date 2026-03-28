@@ -5,7 +5,7 @@ import { HiPlus, HiMinus, HiX, HiArrowRight, HiOutlineShoppingBag } from 'react-
 import PageHeader from '../components/layout/PageHeader';
 
 const Cart = () => {
-    const { cartItems, removeFromCart, incrementQuantity, decrementQuantity, cartTotal } = useShop();
+    const { cartItems, removeFromCart, incrementQuantity, decrementQuantity, cartTotal, setCartCheckout } = useShop();
     const navigate = useNavigate();
 
     const shipping = cartTotal > 500 ? 0 : 50;
@@ -60,9 +60,10 @@ const Cart = () => {
                             {cartItems.map((item) => (
                                 <div
                                     key={item.id}
-                                    className="bg-stone-50 p-6 rounded-[2.5rem] border border-stone-100 flex flex-col sm:flex-row items-center gap-8 group transition-all hover:bg-white hover:shadow-xl"
+                                    className="bg-white p-4 md:p-6 rounded-[2rem] md:rounded-[2.5rem] border border-stone-100 flex flex-col sm:flex-row items-center gap-4 md:gap-8 group transition-all hover:bg-stone-50 hover:shadow-xl relative"
                                 >
-                                    <div className="w-20 h-20 md:w-28 md:h-28 rounded-2xl md:rounded-3xl overflow-hidden bg-white flex-shrink-0 border border-stone-100 shadow-sm">
+                                    {/* Product Image */}
+                                    <div className="w-full sm:w-28 h-40 sm:h-28 rounded-2xl md:rounded-3xl overflow-hidden bg-stone-50 flex-shrink-0 border border-stone-100 shadow-sm relative group-hover:bg-white transition-colors duration-500">
                                         <img
                                             src={item.image}
                                             alt={item.name}
@@ -70,45 +71,53 @@ const Cart = () => {
                                         />
                                     </div>
 
-                                    <div className="flex-grow text-center sm:text-left">
-                                        <p className="text-[10px] font-black uppercase tracking-widest text-amber-600 mb-1">{item.category}</p>
-                                        <h3 className="text-sm md:text-xl font-black text-stone-900 mb-1">{item.name}</h3>
-                                        <p className="text-sm font-black text-stone-400">Unit Price: <span className="text-stone-900 font-bold">₹{item.price}</span></p>
-                                    </div>
+                                    {/* Details & Actions */}
+                                    <div className="flex-grow w-full flex flex-col sm:flex-row items-center sm:items-stretch gap-4 sm:gap-6">
+                                        <div className="flex-grow text-center sm:text-left">
+                                            <p className="text-[10px] font-black uppercase tracking-widest text-emerald-600 mb-1">{item.category}</p>
+                                            <h3 className="text-base md:text-xl font-black text-stone-900 mb-1 group-hover:text-amber-600 transition-colors uppercase tracking-tight">{item.name}</h3>
+                                            <p className="text-xs font-black text-stone-400">Unit: <span className="text-stone-900 font-bold">₹{item.price}</span></p>
+                                        </div>
+                                        <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 w-full sm:w-auto mt-2 sm:mt-0">
+                                            <div className="flex items-center justify-between w-full sm:w-auto gap-4">
+                                                {/* Quantity Selector */}
+                                                <div className="flex items-center bg-stone-100 rounded-xl p-1 shadow-inner border border-stone-200">
+                                                    <button
+                                                        onClick={() => decrementQuantity(item.id)}
+                                                        className="p-2 text-stone-500 hover:text-amber-600 hover:bg-white rounded-lg transition-all"
+                                                    >
+                                                        <HiMinus className="w-3.5 h-3.5" />
+                                                    </button>
+                                                    <span className="w-8 text-center text-sm font-black text-stone-900">{item.quantity}</span>
+                                                    <button
+                                                        onClick={() => incrementQuantity(item.id)}
+                                                        className="p-2 text-stone-500 hover:text-amber-600 hover:bg-white rounded-lg transition-all"
+                                                    >
+                                                        <HiPlus className="w-3.5 h-3.5" />
+                                                    </button>
+                                                </div>
 
-                                    <div className="flex items-center bg-white rounded-2xl p-1 shadow-sm border border-stone-100">
-                                        <button
-                                            onClick={() => decrementQuantity(item.id)}
-                                            className="p-2.5 text-stone-400 hover:text-amber-600 hover:bg-stone-50 rounded-xl transition-all"
-                                        >
-                                            <HiMinus className="w-4 h-4" />
-                                        </button>
-                                        <span className="w-10 text-center text-sm font-black text-stone-900">{item.quantity}</span>
-                                        <button
-                                            onClick={() => incrementQuantity(item.id)}
-                                            className="p-2.5 text-stone-400 hover:text-amber-600 hover:bg-stone-50 rounded-xl transition-all"
-                                        >
-                                            <HiPlus className="w-4 h-4" />
-                                        </button>
-                                    </div>
+                                                {/* Subtotal Price */}
+                                                <div className="text-right sm:w-24">
+                                                    <p className="text-lg md:text-xl font-black text-stone-900">₹{(item.price * item.quantity).toFixed(0)}</p>
+                                                </div>
+                                            </div>
 
-                                    <div className="text-right sm:w-24">
-                                        <p className="text-lg font-black text-stone-900">₹{(item.price * item.quantity).toFixed(0)}</p>
+                                            {/* Remove Button */}
+                                            <button
+                                                onClick={() => removeFromCart(item.id)}
+                                                className="absolute top-4 right-4 p-2 text-stone-300 hover:text-rose-500 transition-all hover:bg-rose-50 rounded-xl"
+                                            >
+                                                <HiX className="w-5 h-5" />
+                                            </button>
+                                        </div>
                                     </div>
-
-                                    <button
-                                        onClick={() => removeFromCart(item.id)}
-                                        className="p-2 text-stone-200 hover:text-rose-500 transition-colors"
-                                    >
-                                        <HiX className="w-6 h-6" />
-                                    </button>
                                 </div>
                             ))}
                         </div>
-
                         <div className="lg:col-span-1">
-                            <div className="bg-stone-50 p-8 rounded-[3rem] border border-stone-100 shadow-sm sticky top-32">
-                                <h2 className="text-2xl font-black text-stone-900 mb-8 tracking-tighter">Order Summary</h2>
+                            <div className="bg-stone-50 p-6 md:p-8 rounded-[2rem] md:rounded-[3rem] border border-stone-100 shadow-sm sticky top-32">
+                                <h2 className="text-xl md:text-2xl font-black text-stone-900 mb-6 md:mb-8 tracking-tighter uppercase">Order Summary</h2>
 
                                 <div className="space-y-4 mb-8">
                                     <div className="flex justify-between text-stone-400 font-black uppercase text-[10px] tracking-widest">
@@ -124,20 +133,23 @@ const Cart = () => {
                                     <div className="pt-6 border-t border-stone-200 flex justify-between items-end">
                                         <div>
                                             <p className="text-[10px] font-black uppercase tracking-[0.2em] text-stone-400 mb-1">Total Amount</p>
-                                            <p className="text-2xl md:text-4xl font-black text-stone-900 tracking-tighter">₹{total.toFixed(0)}</p>
+                                            <p className="text-2xl md:text-3xl font-black text-stone-900 tracking-tighter">₹{total.toFixed(0)}</p>
                                         </div>
                                     </div>
                                 </div>
 
                                 <button
-                                    onClick={() => navigate("/checkout")}
-                                    className="w-full bg-stone-900 text-white py-3.5 md:py-5 rounded-2xl md:rounded-3xl font-black flex items-center justify-center gap-3 hover:bg-amber-600 transition-all shadow-xl shadow-stone-900/10 transform active:scale-[0.98] group"
+                                    onClick={() => {
+                                        setCartCheckout();
+                                        navigate("/checkout");
+                                    }}
+                                    className="w-full bg-stone-900 text-white py-4 md:py-5 rounded-2xl md:rounded-3xl font-black flex items-center justify-center gap-3 hover:bg-amber-600 transition-all shadow-xl shadow-stone-900/10 transform active:scale-[0.98] group"
                                 >
                                     <span className="uppercase tracking-widest text-[10px]">Secure Checkout</span>
                                     <HiArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                                 </button>
 
-                                <p className="mt-8 text-[10px] font-bold text-stone-400 uppercase tracking-widest flex items-center justify-center gap-2 italic">
+                                <p className="mt-6 md:mt-8 text-[10px] font-bold text-stone-400 uppercase tracking-widest flex items-center justify-center gap-2 italic">
                                     <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
                                     Secure Encrypted Payment
                                 </p>
