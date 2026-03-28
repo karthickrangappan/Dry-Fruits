@@ -61,7 +61,7 @@ export const ShopProvider = ({ children }) => {
         const newOrder = {
             ...orderDetails,
             id: formattedId,
-            date: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }),
+            date: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'numeric', year: 'numeric' }),
             status: 'Processing',
             items: [...checkoutItems],
             total: currentCheckoutTotal

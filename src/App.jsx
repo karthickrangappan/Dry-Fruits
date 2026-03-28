@@ -19,6 +19,8 @@ import CategoryView from './pages/CategoryView'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Services from './pages/Services'
+import PrivacyPolicy from './pages/PrivacyPolicy'
+import FAQ from './pages/FAQ'
 import { ShopProvider } from './context/ShopContext'
 
 import ScrollToTop from './components/common/ScrollToTop';
@@ -43,6 +45,8 @@ export default function App() {
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/services" element={<Services />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/faq" element={<FAQ />} />
               <Route path="/login" element={<Login />} />
               <Route path="/logout" element={<Logout />} />
               <Route element={<PrivateAuth />}>

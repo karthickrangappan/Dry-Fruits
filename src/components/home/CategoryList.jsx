@@ -84,7 +84,7 @@ const CategoryList = () => {
                 <Swiper
                     modules={[Autoplay]}
                     spaceBetween={20}
-                    slidesPerView={1.2}
+                    slidesPerView={1}
                     loop={true}
                     autoplay={{
                         delay: 2500,

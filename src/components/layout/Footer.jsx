@@ -18,22 +18,24 @@ const Footer = () => {
 
   const footerLinks = {
     shop: [
+      { name: 'Raisins', path: '/shop?category=Raisins' },
       { name: 'Nuts', path: '/shop?category=Nuts' },
       { name: 'Dried Fruits', path: '/shop?category=Dried%20Fruits' },
+      { name: 'Dates', path: '/shop?category=Dates' },
       { name: 'Seeds', path: '/shop?category=Seeds' },
     ],
     support: [
       { name: 'Order Status', path: '/orders' },
-      { name: 'Shipping Policy', path: '/' },
-      { name: 'Return Policy', path: '/' },
-      { name: 'FAQ', path: '/' },
+      { name: 'Shipping Policy', path: '/privacy-policy' },
+      { name: 'Return Policy', path: '/privacy-policy' },
+      { name: 'FAQ', path: '/faq' },
       { name: 'Contact Us', path: '/contact' }
     ],
     company: [
       { name: 'About DryFruits', path: '/about' },
       { name: 'Our Nutrition', path: '/services' },
-      { name: 'Privacy Policy', path: '/' },
-      { name: 'Terms of Service', path: '/' },
+      { name: 'Privacy Policy', path: '/privacy-policy' },
+      { name: 'Terms of Service', path: '/services' },
       { name: 'Wholesale', path: '/contact' }
     ]
   };
@@ -44,9 +46,9 @@ const Footer = () => {
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-amber-600/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-12 mb-10">
           <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center gap-3 group pb-10">
+            <Link to="/" className="flex items-center gap-3 group mb-6">
               <div className="w-12 h-12 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
                 <img
                   src="/logo.png"
@@ -61,8 +63,8 @@ const Footer = () => {
 
               </div>
             </Link>
-            <p className="text-stone-400 pl-5 text-[10px] md:text-sm leading-relaxed mb-8 max-w-xs">
-              Discover nature's finest treasures. We bring you premium quality dry fruits, nuts, and seeds sourced from the best orchards around the globe.
+            <p className="text-stone-400  text-[10px] md:text-sm text-justify leading-relaxed mb-8 max-w-xs">
+              Discover nature's finest treasures. We bring you premium quality dry fruits, nuts, dates, raisins and seeds sourced from the best orchards around the globe.
             </p>
             <div className="flex gap-4">
               {[FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn].map((Icon, index) => (
@@ -77,8 +79,8 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="md:pl-8 lg:pl-12">
-            <h4 className="text-white text-sm md:text-base font-bold mb-6 tracking-wide uppercase">Shop Categories</h4>
+          <div className="md:pl-8 lg:pl-12 pt-2">
+            <h4 className="text-white text-sm md:text-base font-bold mb-8 tracking-wide uppercase">Shop Categories</h4>
             <ul className="space-y-4">
               {footerLinks.shop.map((link) => (
                 <li key={link.name}>
@@ -91,8 +93,8 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="md:pl-8 lg:pl-12">
-            <h4 className="text-white text-sm md:text-base font-bold mb-6 tracking-wide uppercase">Customer Care</h4>
+          <div className="md:pl-8 lg:pl-12 pt-2">
+            <h4 className="text-white text-sm md:text-base font-bold mb-8 tracking-wide uppercase">Customer Care</h4>
             <ul className="space-y-4">
               {footerLinks.support.map((link) => (
                 <li key={link.name}>
@@ -105,8 +107,8 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="md:col-span-2 lg:col-span-1 xl:col-span-2 md:pl-8 lg:pl-12">
-            <h4 className="text-white text-sm md:text-base font-bold mb-6 tracking-wide uppercase">Stay Healthy</h4>
+          <div className="md:col-span-2 lg:col-span-1 xl:col-span-2 md:pl-8 lg:pl-12 pt-2">
+            <h4 className="text-white text-sm md:text-base font-bold mb-8 tracking-wide uppercase">Stay Healthy</h4>
             <p className="text-stone-400 text-[10px] md:text-sm mb-6 max-w-sm">
               Subscribe to receive wellness tips, nutritional guides, and exclusive offers.
             </p>
