@@ -11,7 +11,7 @@ const Checkout = () => {
 
     useEffect(() => {
         if (checkoutItems.length === 0) {
-            navigate('/');
+            navigate('/orders');
         }
     }, [checkoutItems, navigate]);
 
