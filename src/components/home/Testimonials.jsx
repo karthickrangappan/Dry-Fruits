@@ -66,7 +66,7 @@ const Testimonials = () => {
             Community Voice
           </span>
 
-          <h2 className="text-4xl md:text-5xl font-extrabold text-stone-900 mb-6 tracking-tight">
+          <h2 className="text-2xl md:text-5xl font-extrabold text-stone-900 mb-6 tracking-tight">
             What Our Customers <span className="text-amber-600">Say</span>
           </h2>
 

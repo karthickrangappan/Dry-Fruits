@@ -33,12 +33,12 @@ const Banner = () => {
                                 </span>
                             </div>
 
-                            <h2 className="text-4xl md:text-5xl font-black text-white mb-6 leading-tight [text-shadow:0_4px_20px_rgba(0,0,0,0.6)]">
+                            <h2 className="text-2xl md:text-5xl font-black text-white mb-6 leading-tight [text-shadow:0_4px_20px_rgba(0,0,0,0.6)]">
                                 FREE <span className="text-amber-400 italic font-serif">NATIONWIDE</span><br />
                                 DELIVERY
                             </h2>
                             
-                            <p className="text-white/95 text-base md:text-lg mb-8 max-w-md [text-shadow:0_2px_10px_rgba(0,0,0,0.6)]">
+                            <p className="text-white/95 text-sm md:text-lg mb-8 max-w-md [text-shadow:0_2px_10px_rgba(0,0,0,0.6)]">
                                 Join our community and get premium wellness products delivered to your doorstep — no shipping fees.
                             </p>
 

@@ -14,7 +14,7 @@ const NewProducts = () => {
             <div className="max-w-7xl mx-auto px-4 md:px-8">
                 <div className="text-center mb-16 px-4">
                     <span className="text-amber-600 font-black uppercase tracking-[0.3em] text-xs mb-4 block">Nature's Latest</span>
-                    <h2 className="text-4xl md:text-5xl font-black text-stone-900 mb-6 tracking-tighter">
+                    <h2 className="text-2xl md:text-5xl font-black text-stone-900 mb-6 tracking-tighter">
                         New <span className="text-amber-600 italic font-serif">Harvest</span>
                     </h2>
                     <p className="text-stone-500 font-medium max-w-xl mx-auto text-sm leading-relaxed">

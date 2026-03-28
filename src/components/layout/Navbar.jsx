@@ -78,7 +78,7 @@ const Navbar = () => {
                             />
                         </div>
                         <div className="flex flex-col">
-                            <span className="text-2xl font-black text-amber-400 leading-none">
+                            <span className="text-xl md:text-2xl font-black text-amber-400 leading-none">
                                 Dry<span className="text-amber-600">Fruits</span>
                             </span>
                         </div>
@@ -141,7 +141,7 @@ const Navbar = () => {
                         ))}
                     </div>
 
-                    <div className="flex items-center gap-2 md:gap-5">
+                    <div className="flex items-center gap-3 md:gap-5">
                         <Link to="/wishlist" className="relative p-2 text-stone-200 hover:text-rose-400 transition-colors cursor-pointer" aria-label="Wishlist">
                             <HiOutlineHeart className="w-6 h-6" />
                             {wishlistCount > 0 && (
@@ -277,13 +277,24 @@ const Navbar = () => {
                             </div>
                         ))}
                         {user && (
-                            <Link
-                                to="/orders"
-                                className={`block text-lg font-medium transition-all ${isActive("/orders") ? 'text-amber-600 translate-x-2' : 'text-stone-700 hover:text-amber-600'}`}
-                                onClick={() => setIsOpen(false)}
-                            >
-                                My Orders
-                            </Link>
+                            <>
+                                <Link
+                                    to="/profile"
+                                    className={`flex items-center gap-3 text-lg font-medium transition-all ${location.pathname === "/profile" ? 'text-amber-600 translate-x-2' : 'text-stone-700 hover:text-amber-600'}`}
+                                    onClick={() => setIsOpen(false)}
+                                >
+                                    <HiOutlineUser className="w-5 h-5 text-amber-600" />
+                                    <span>My Profile</span>
+                                </Link>
+                                <Link
+                                    to="/orders"
+                                    className={`flex items-center gap-3 text-lg font-medium transition-all ${location.pathname === "/orders" ? 'text-amber-600 translate-x-2' : 'text-stone-700 hover:text-amber-600'}`}
+                                    onClick={() => setIsOpen(false)}
+                                >
+                                    <HiOutlineShoppingBag className="w-5 h-5 text-amber-600" />
+                                    <span>My Orders</span>
+                                </Link>
+                            </>
                         )}
                     </div>
 

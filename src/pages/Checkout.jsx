@@ -107,7 +107,7 @@ const Checkout = () => {
                         
                         <div className="flex-grow bg-white/70 backdrop-blur-xl p-8 md:p-10 rounded-[3rem] border border-stone-100 shadow-xl">
                             
-                            <h2 className="text-3xl md:text-4xl font-extrabold text-stone-900 mb-10 tracking-tight">
+                            <h2 className="text-2xl md:text-4xl font-extrabold text-stone-900 mb-10 tracking-tight">
                                 Shipping <span className="text-amber-600 italic font-serif">Information</span>
                             </h2>
 
@@ -122,7 +122,7 @@ const Checkout = () => {
                                         placeholder="Full Name"
                                         value={formData.fullName}
                                         onChange={handleInputChange}
-                                        className="w-full bg-white border border-stone-200 rounded-2xl px-5 py-4 text-stone-900 font-semibold focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none shadow-sm"
+                                        className="w-full bg-white border border-stone-200 rounded-xl md:rounded-2xl px-4 md:px-5 py-3 md:py-4 text-stone-900 font-semibold focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none shadow-sm text-sm md:text-base"
                                     />
                                 </div>
 
@@ -135,7 +135,7 @@ const Checkout = () => {
                                         placeholder="Email"
                                         value={formData.email}
                                         onChange={handleInputChange}
-                                        className="w-full bg-white border border-stone-200 rounded-2xl px-5 py-4 text-stone-900 font-semibold focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none shadow-sm"
+                                        className="w-full bg-white border border-stone-200 rounded-xl md:rounded-2xl px-4 md:px-5 py-3 md:py-4 text-stone-900 font-semibold focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none shadow-sm text-sm md:text-base"
                                     />
                                 </div>
 
@@ -148,7 +148,7 @@ const Checkout = () => {
                                         value={formData.address}
                                         onChange={(e) => setFormData(prev => ({ ...prev, address: e.target.value }))}
                                         rows="3"
-                                        className="w-full bg-white border border-stone-200 rounded-2xl px-5 py-4 text-stone-900 font-semibold focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none shadow-sm resize-none"
+                                        className="w-full bg-white border border-stone-200 rounded-xl md:rounded-2xl px-4 md:px-5 py-3 md:py-4 text-stone-900 font-semibold focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none shadow-sm resize-none text-sm md:text-base"
                                     />
                                 </div>
 
@@ -161,7 +161,7 @@ const Checkout = () => {
                                         placeholder="City"
                                         value={formData.city}
                                         onChange={handleInputChange}
-                                        className="w-full bg-white border border-stone-200 rounded-2xl px-5 py-4 text-stone-900 font-semibold focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none shadow-sm"
+                                        className="w-full bg-white border border-stone-200 rounded-xl md:rounded-2xl px-4 md:px-5 py-3 md:py-4 text-stone-900 font-semibold focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none shadow-sm text-sm md:text-base"
                                     />
                                 </div>
 
@@ -174,7 +174,7 @@ const Checkout = () => {
                                         placeholder="Postal Code"
                                         value={formData.postalCode}
                                         onChange={handleInputChange}
-                                        className="w-full bg-white border border-stone-200 rounded-2xl px-5 py-4 text-stone-900 font-semibold focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none shadow-sm"
+                                        className="w-full bg-white border border-stone-200 rounded-xl md:rounded-2xl px-4 md:px-5 py-3 md:py-4 text-stone-900 font-semibold focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none shadow-sm text-sm md:text-base"
                                     />
                                 </div>
                             </div>
@@ -184,17 +184,17 @@ const Checkout = () => {
 
                                 <div className="grid md:grid-cols-2 gap-4">
                                     
-                                    <label className={`flex items-center gap-4 p-6 rounded-3xl border-2 transition-all cursor-pointer hover:scale-[1.02] hover:shadow-lg ${paymentMethod === 'cod' ? 'border-amber-500 bg-amber-50/50' : 'border-stone-200 bg-white'}`}>
+                                    <label className={`flex items-center gap-4 p-4 md:p-6 rounded-2xl md:rounded-3xl border-2 transition-all cursor-pointer hover:scale-[1.02] hover:shadow-lg ${paymentMethod === 'cod' ? 'border-amber-500 bg-amber-50/50' : 'border-stone-200 bg-white'}`}>
                                         <input
                                             type="radio"
                                             value="cod"
                                             checked={paymentMethod === "cod"}
                                             onChange={(e) => setPaymentMethod(e.target.value)}
-                                            className="w-5 h-5 accent-amber-600"
+                                            className="w-4 md:w-5 h-4 md:h-5 accent-amber-600"
                                         />
                                         <div>
-                                            <p className="font-bold">Cash on Delivery</p>
-                                            <p className="text-xs text-stone-400">Pay at Doorstep</p>
+                                            <p className="font-bold text-sm md:text-base">Cash on Delivery</p>
+                                            <p className="text-[10px] md:text-xs text-stone-400">Pay at Doorstep</p>
                                         </div>
                                     </label>
 
@@ -254,7 +254,7 @@ const Checkout = () => {
 
                                 <button
                                     onClick={handlePlaceOrder}
-                                    className="w-full mt-8 bg-gradient-to-r from-stone-900 to-stone-700 text-white py-5 rounded-3xl font-bold uppercase text-sm hover:from-amber-600 hover:to-amber-500 transition-all active:scale-95"
+                                    className="w-full mt-8 bg-gradient-to-r from-stone-900 to-stone-700 text-white py-3.5 md:py-5 rounded-2xl md:rounded-3xl font-bold uppercase text-xs md:text-sm hover:from-amber-600 hover:to-amber-500 transition-all active:scale-95 shadow-xl"
                                 >
                                     Confirm Order
                                 </button>

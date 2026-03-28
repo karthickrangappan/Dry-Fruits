@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
+import { HiX } from 'react-icons/hi';
 
 export const ShopContext = createContext();
 
@@ -20,6 +21,12 @@ export const ShopProvider = ({ children }) => {
     });
 
     const [orders, setOrders] = useState([]);
+    const [toast, setToast] = useState(null);
+
+    const showToast = (message) => {
+        setToast(message);
+        setTimeout(() => setToast(null), 3000);
+    };
 
     useEffect(() => {
         if (user) {
@@ -59,10 +66,12 @@ export const ShopProvider = ({ children }) => {
         setCartItems(prevItems => {
             const existingItem = prevItems.find(item => item.id === product.id);
             if (existingItem) {
+                showToast(`Updated ${product.name} quantity in cart!`);
                 return prevItems.map(item =>
                     item.id === product.id ? { ...item, quantity: item.quantity + quantity } : item
                 );
             }
+            showToast(`${product.name} added to cart!`);
             return [...prevItems, { ...product, quantity }];
         });
     };
@@ -106,8 +115,10 @@ export const ShopProvider = ({ children }) => {
     const toggleWishlist = (product) => {
         if (wishlistItems.some(item => item.id === product.id)) {
             removeFromWishlist(product.id);
+            showToast(`${product.name} removed from wishlist!`);
         } else {
             addToWishlist(product);
+            showToast(`${product.name} added to wishlist!`);
         }
     };
 
@@ -197,6 +208,16 @@ export const ShopProvider = ({ children }) => {
     return (
         <ShopContext.Provider value={value}>
             {children}
+            {toast && (
+                <div className="fixed top-24 right-4 z-[100] animate-in fade-in slide-in-from-right-5 duration-300">
+                    <div className="bg-white border-2 border-stone-900 text-stone-900 px-6 py-4 rounded-2xl flex items-center gap-4 min-w-[280px]">
+                        <p className="flex-1 text-xs font-black uppercase tracking-widest">{toast}</p>
+                        <button onClick={() => setToast(null)} className="hover:rotate-90 transition-transform">
+                            <HiX className="text-xl" />
+                        </button>
+                    </div>
+                </div>
+            )}
         </ShopContext.Provider>
     );
 };

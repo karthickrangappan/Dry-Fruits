@@ -180,7 +180,7 @@ export const ProductCard = ({ product }) => {
         navigate(`/product/${product.id}`);
     };
     return (
-        <div className="group relative rounded-[2rem] overflow-hidden bg-gradient-to-b from-white/50 to-white/50 shadow-md hover:shadow-2xl shadow-amber-100 transition-all duration-500 hover:-translate-y-3 border border-stone-100 flex flex-col h-full mx-auto w-full max-w-[320px] sm:max-w-none">
+        <div className="group relative rounded-[2rem] overflow-hidden bg-gradient-to-b from-white/50 to-white/50 shadow-md hover:shadow-2xl shadow-amber-100 transition-all duration-500 hover:-translate-y-3 border border-stone-100 flex flex-col h-full mx-auto w-full max-w-[280px] sm:max-w-none">
 
             {product.isNew && (
                 <div className="absolute top-4 left-4 z-20">
@@ -206,7 +206,7 @@ export const ProductCard = ({ product }) => {
 
             <div
                 onClick={handleNavigate}
-                className="relative h-64 overflow-hidden cursor-pointer  "
+                className="relative h-48 md:h-64 overflow-hidden cursor-pointer  "
             >
                 <img
                     src={product.image}
@@ -226,7 +226,7 @@ export const ProductCard = ({ product }) => {
                 className="p-6 flex flex-col gap-4 cursor-pointer flex-grow"
             >
                 <div className="flex justify-between items-start gap-2">
-                    <h3 className="text-md font-black text-amber-800 group-hover:text-amber-900 transition-colors duration-300 min-h-[50px] line-clamp-2 leading-tight">
+                    <h3 className="text-sm md:text-md font-black text-stone-800 transition-colors duration-300 min-h-[50px] line-clamp-2 leading-tight">
                         {product.name}
                     </h3>
 
@@ -244,7 +244,7 @@ export const ProductCard = ({ product }) => {
                             ₹{product.oldPrice}
                         </span>
                         <div className="flex items-baseline gap-1">
-                            <span className="text-2xl font-black text-amber-900 tracking-tighter transition-colors group-hover:text-amber-600">
+                            <span className="text-xl md:text-2xl font-black text-stone-900 tracking-tighter transition-colors group-hover:text-amber-600">
                                 ₹{product.price}
                             </span>
                         </div>
@@ -252,7 +252,7 @@ export const ProductCard = ({ product }) => {
 
                     <button
                         onClick={handleBuyNow}
-                        className="px-5 py-2.5 rounded-xl bg-amber-600 text-white text-xs font-black uppercase tracking-widest shadow-xl hover:bg-amber-700 hover:scale-105 active:scale-95 transition-all duration-300"
+                        className="px-4 md:px-5 py-2 md:py-2.5 rounded-lg md:rounded-xl bg-amber-600 text-white text-[10px] md:text-xs font-black uppercase tracking-widest shadow-xl hover:bg-amber-700 hover:scale-105 active:scale-95 transition-all duration-300"
                     >
                         Buy Now
                     </button>

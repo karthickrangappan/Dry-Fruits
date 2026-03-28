@@ -49,7 +49,7 @@ const Login = () => {
                 
                 <div className="text-center mb-10">
                     <img src="/logo.png" alt="Logo" className="w-16 h-16 mx-auto mb-6 rounded-2xl drop-shadow-lg" />
-                    <h2 className="text-3xl font-black text-stone-900 mb-2">
+                    <h2 className="text-2xl md:text-3xl font-black text-stone-900 mb-2">
                         {isLogin ? 'Welcome Back!' : 'Create Account'}
                     </h2>
                     <p className="text-stone-500 font-medium">
@@ -68,7 +68,7 @@ const Login = () => {
                                 required
                                 value={formData.name}
                                 onChange={handleChange}
-                                className="w-full pl-12 pr-4 py-4 bg-stone-50 border border-stone-100 rounded-2xl outline-none focus:ring-2 focus:ring-amber-600/20 focus:border-amber-600 transition-all text-stone-800"
+                                className="w-full pl-12 pr-4 py-3 md:py-4 bg-stone-50 border border-stone-100 rounded-xl md:rounded-2xl outline-none focus:ring-2 focus:ring-amber-600/20 focus:border-amber-600 transition-all text-stone-800 text-sm md:text-base"
                             />
                         </div>
                     )}
@@ -82,7 +82,7 @@ const Login = () => {
                             required
                             value={formData.email}
                             onChange={handleChange}
-                            className="w-full pl-12 pr-4 py-4 bg-stone-50 border border-stone-100 rounded-2xl outline-none focus:ring-2 focus:ring-amber-600/20 focus:border-amber-600 transition-all text-stone-800"
+                            className="w-full pl-12 pr-4 py-3 md:py-4 bg-stone-50 border border-stone-100 rounded-xl md:rounded-2xl outline-none focus:ring-2 focus:ring-amber-600/20 focus:border-amber-600 transition-all text-stone-800 text-sm md:text-base"
                         />
                     </div>
 
@@ -95,7 +95,7 @@ const Login = () => {
                             required
                             value={formData.password}
                             onChange={handleChange}
-                            className="w-full pl-12 pr-4 py-4 bg-stone-50 border border-stone-100 rounded-2xl outline-none focus:ring-2 focus:ring-amber-600/20 focus:border-amber-600 transition-all text-stone-800"
+                            className="w-full pl-12 pr-4 py-3 md:py-4 bg-stone-50 border border-stone-100 rounded-xl md:rounded-2xl outline-none focus:ring-2 focus:ring-amber-600/20 focus:border-amber-600 transition-all text-stone-800 text-sm md:text-base"
                         />
                     </div>
 
@@ -110,7 +110,7 @@ const Login = () => {
                     <button 
                         type="submit"
                         disabled={loading}
-                        className="w-full py-4 bg-amber-600 text-white rounded-2xl font-black shadow-xl shadow-amber-600/20 hover:bg-amber-700 transform active:scale-95 transition-all flex items-center justify-center gap-2 group/btn"
+                        className="w-full py-3.5 md:py-4 bg-amber-600 text-white rounded-xl md:rounded-2xl font-black shadow-xl shadow-amber-600/20 hover:bg-amber-700 transform active:scale-95 transition-all flex items-center justify-center gap-2 group/btn text-sm md:text-base"
                     >
                         {loading ? 'Please wait...' : (isLogin ? 'Sign In' : 'Sign Up')}
                         {!loading && <HiArrowNarrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />}

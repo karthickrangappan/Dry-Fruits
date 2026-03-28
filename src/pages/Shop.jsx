@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import ProductCard, { products } from '../components/product/ProductCard';
-import { HiFilter, HiStar, HiX } from 'react-icons/hi';
+import { HiFilter, HiStar, HiOutlineRefresh, HiX } from 'react-icons/hi';
 import PageHeader from '../components/layout/PageHeader';
 
 const Shop = () => {
@@ -25,6 +25,19 @@ const Shop = () => {
         setPriceRange(maxProductPrice);
     }, [maxProductPrice]);
 
+    useEffect(() => {
+        if (showFilters && window.innerWidth < 1024) {
+            document.body.style.overflow = 'hidden';
+            const pane = document.getElementById('filter-pane');
+            if (pane) pane.scrollTop = 0;
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [showFilters]);
+
     const filteredProducts = useMemo(() => {
         return products.filter(item => {
             const matchesCategory = selectedCategory === "All" || item.category === selectedCategory;
@@ -39,6 +52,17 @@ const Shop = () => {
         setMinRating(0);
         setPriceRange(maxProductPrice);
         setSearchParams({});
+        if (window.innerWidth < 1024) setShowFilters(false);
+    };
+
+    const handleCategorySelect = (cat) => {
+        setSelectedCategory(cat);
+        if (window.innerWidth < 1024) setShowFilters(false);
+    };
+
+    const handleRatingSelect = (rating) => {
+        setMinRating(rating);
+        if (window.innerWidth < 1024) setShowFilters(false);
     };
 
     return (
@@ -49,42 +73,54 @@ const Shop = () => {
                 breadcrumbs={[{ name: "Shop", path: "/shop" }, { name: selectedCategory }]}
             />
 
-            <section className='bg-white py-16 relative z-10'>
+            <section className='bg-white py-8 md:py-16 relative z-10'>
                 <div className="max-w-7xl mx-auto px-4 md:px-8">
-                    <div className="flex flex-col lg:flex-row gap-12 relative overflow-hidden">
+                    <div className="flex flex-col lg:flex-row gap-12 relative">
                         {showFilters && (
                             <div
                                 className="fixed inset-0 bg-stone-900/40 backdrop-blur-sm z-[60] lg:hidden"
                                 onClick={() => setShowFilters(false)}
                             />
                         )}
-                        <aside className={`
+
+                        <aside
+                            id="filter-pane"
+                            className={`
                             ${showFilters ? 'translate-x-0' : '-translate-x-full lg:translate-x-0 lg:hidden'}
-                            fixed inset-y-0 left-0 z-[70] w-full max-w-xs bg-white p-8 shadow-2xl transition-transform duration-500 ease-in-out
-                            lg:relative lg:z-10 lg:w-72 lg:bg-stone-50 lg:rounded-[3rem] lg:border lg:border-stone-100 lg:shadow-none lg:p-8 lg:translate-x-0
+                            fixed inset-y-0 left-0 z-[70] w-full max-w-xs bg-white p-6 shadow-2xl transition-transform duration-500 ease-in-out
+                            overflow-y-auto lg:overflow-y-visible
+                            lg:sticky lg:top-24 lg:h-fit lg:z-30 lg:w-72 lg:bg-stone-50 lg:rounded-[3rem] lg:border lg:border-stone-100 lg:shadow-none lg:p-8 lg:translate-x-0
                         `}>
-                            <div className="flex items-center justify-between mb-10">
-                                <h3 className="text-xl font-black text-stone-900 flex items-center gap-2">
-                                    <HiFilter className="text-amber-600" /> Filters
-                                </h3>
-                                <div className="flex items-center gap-4">
+
+
+
+                            <div className="flex items-center justify-between mb-8 sticky top-16 bg-white lg:bg-stone-50 z-10 pb-4">
+                                <div>
+                                    <h3 className="text-lg font-black text-stone-900 flex items-center gap-2 mb-1">
+                                        <HiFilter className="text-amber-600" /> {selectedCategory === "All" ? "Collection" : selectedCategory}
+                                    </h3>
+                                    <p className="text-stone-400 font-bold text-[8px] uppercase tracking-[0.2em]">
+                                        Explore {filteredProducts.length} Treasures
+                                    </p>
+                                </div>
+                                <div className="flex items-center gap-2">
                                     <button
                                         onClick={clearFilters}
-                                        className="text-[10px] font-black text-amber-600 hover:text-amber-700 transition-colors uppercase tracking-widest"
+                                        className="p-2 rounded-full bg-amber-50 hover:bg-amber-100 transition-all"
                                     >
-                                        Reset
+                                        <HiOutlineRefresh className="text-amber-600 text-lg" />
                                     </button>
                                     <button
                                         onClick={() => setShowFilters(false)}
-                                        className="lg:hidden p-2 bg-stone-100 rounded-full hover:bg-stone-200 transition-colors"
+                                        className="p-2 rounded-full bg-stone-100 hover:bg-stone-200 transition-all"
                                     >
-                                        <HiX className="text-stone-900" />
+                                        <HiX className="text-stone-700 text-lg" />
                                     </button>
                                 </div>
                             </div>
 
-                            <div className="space-y-10">
-                                <div>
+                            <div className="space-y-8">
+                                <div className="bg-stone-50 p-4 rounded-2xl border border-stone-100">
                                     <h4 className="text-[10px] font-black text-stone-400 uppercase tracking-[0.2em] mb-4">Price Range</h4>
                                     <div className="px-2">
                                         <input
@@ -102,13 +138,13 @@ const Shop = () => {
                                     </div>
                                 </div>
 
-                                <div>
+                                <div className="bg-stone-50 p-4 rounded-2xl border border-stone-100">
                                     <h4 className="text-[10px] font-black text-stone-400 uppercase tracking-[0.2em] mb-4">Categories</h4>
                                     <div className="space-y-1.5">
                                         {categories.map((cat) => (
                                             <button
                                                 key={cat}
-                                                onClick={() => setSelectedCategory(cat)}
+                                                onClick={() => handleCategorySelect(cat)}
                                                 className={`block w-full text-left px-5 py-3 rounded-2xl text-xs font-black uppercase tracking-widest transition-all ${selectedCategory === cat
                                                     ? 'bg-amber-600 text-white shadow-xl shadow-amber-600/20'
                                                     : 'text-stone-500 hover:bg-white hover:border hover:border-stone-100'
@@ -120,13 +156,13 @@ const Shop = () => {
                                     </div>
                                 </div>
 
-                                <div>
+                                <div className="bg-stone-50 p-4 rounded-2xl border border-stone-100">
                                     <h4 className="text-[10px] font-black text-stone-400 uppercase tracking-[0.2em] mb-4">Minimum Rating</h4>
                                     <div className="grid grid-cols-1 gap-1.5">
                                         {[4, 3, 2].map((rating) => (
                                             <button
                                                 key={rating}
-                                                onClick={() => setMinRating(rating)}
+                                                onClick={() => handleRatingSelect(rating)}
                                                 className={`flex items-center gap-3 w-full px-5 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${minRating === rating
                                                     ? 'bg-stone-900 text-white shadow-xl shadow-stone-900/10'
                                                     : 'text-stone-500 hover:bg-white hover:border hover:border-stone-100'
@@ -139,36 +175,19 @@ const Shop = () => {
                                     </div>
                                 </div>
                             </div>
-
-                            <button
-                                onClick={() => setShowFilters(false)}
-                                className="w-full mt-12 py-5 bg-stone-900 text-white rounded-2xl font-black uppercase tracking-widest text-xs lg:hidden shadow-xl"
-                            >
-                                Apply Filters
-                            </button>
                         </aside>
 
                         <div className="flex-1">
-                            <div className="mb-12 flex items-center justify-between border-b border-stone-100 pb-12 gap-8">
-                                <button
-                                    onClick={() => setShowFilters(!showFilters)}
-                                    className={`px-8 py-3.5 rounded-full font-black text-[10px] uppercase tracking-widest transition-all flex items-center gap-3 border shadow-sm ${showFilters
-                                            ? 'bg-amber-600 text-white border-amber-500'
-                                            : 'bg-white text-stone-900 border-stone-200 hover:bg-stone-50'
-                                        }`}
-                                >
-                                    <HiFilter className={showFilters ? 'animate-bounce' : ''} />
-                                    {showFilters ? 'Hide' : 'Show'} Filters
-                                </button>
-
-                                <div className="text-right">
-                                    <h1 className="text-4xl lg:text-6xl font-black text-stone-900 tracking-tighter mb-2">
-                                        {selectedCategory === "All" ? "Collection" : selectedCategory}
-                                    </h1>
-                                    <p className="text-stone-400 font-bold text-[10px] uppercase tracking-[0.2em]">
-                                        Explore {filteredProducts.length} Handpicked Treasures
-                                    </p>
-                                </div>
+                            <div className="mb-8 md:mb-12 flex items-center justify-between border-b border-stone-100 pb-4 md:pb-8 lg:pb-12 gap-8 sticky top-16 bg-white z-40 pt-2 -mt-2">
+                                {!showFilters && (
+                                    <button
+                                        onClick={() => setShowFilters(true)}
+                                        className="px-6 md:px-8 py-2 md:py-3.5 rounded-full font-black text-[10px] uppercase tracking-widest transition-all flex items-center gap-3 border shadow-sm bg-white text-stone-900 border-stone-200 hover:bg-stone-50"
+                                    >
+                                        <HiFilter />
+                                        Filters
+                                    </button>
+                                )}
                             </div>
 
                             {filteredProducts.length > 0 ? (

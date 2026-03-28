@@ -18,12 +18,12 @@ const TrendingProducts = () => {
                         <span className="text-amber-600 font-black uppercase tracking-[0.4em] text-[10px] mb-4 block">
                             Curated Selection
                         </span>
-                        <h2 className="text-5xl md:text-7xl font-black text-stone-900 tracking-tighter leading-none">
+                        <h2 className="text-3xl md:text-7xl font-black text-stone-900 tracking-tighter leading-none">
                             Trending <br />
-                            <span className="text-amber-600 italic font-serif text-6xl md:text-8xl">Essentials</span>
+                            <span className="text-amber-600 italic font-serif text-4xl md:text-8xl">Essentials</span>
                         </h2>
                     </div>
-                    <p className="text-stone-500 font-medium max-w-sm text-lg leading-relaxed border-l-2 border-amber-100 pl-8">
+                    <p className="text-stone-500 font-medium max-w-sm text-sm md:text-lg leading-relaxed border-l-2 border-amber-100 pl-8">
                         The most sought-after treasures from our orchards, hand-selected for their superior quality and taste.
                     </p>
                 </div>

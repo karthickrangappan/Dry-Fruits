@@ -56,13 +56,13 @@ const CategoryList = () => {
                         <h4 className="text-amber-600 font-black uppercase tracking-[0.3em] text-sm mb-4">
                             Explore Collections
                         </h4>
-                        <h2 className="text-4xl md:text-5xl font-black text-stone-900 leading-tight">
+                        <h2 className="text-2xl md:text-5xl font-black text-stone-900 leading-tight">
                             Shop by <span className="text-amber-600">Categories</span>
                         </h2>
                     </div>
                     <button
                         onClick={() => navigate('/categories')}
-                        className="px-8 py-4 bg-stone-900 text-white font-bold rounded-2xl hover:bg-stone-800 transition-all duration-300 transform hover:-translate-y-1"
+                        className="px-6 md:px-8 py-2.5 md:py-4 bg-stone-900 text-white font-bold rounded-xl md:rounded-2xl hover:bg-stone-800 transition-all duration-300 transform hover:-translate-y-1 text-xs md:text-base"
                     >
                         View All Categories
                     </button>

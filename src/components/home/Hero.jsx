@@ -4,7 +4,7 @@ import { HiOutlineArrowRight, HiOutlineShoppingBag, HiSparkles } from 'react-ico
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-stone-900">
+    <section className="relative min-h-[100dvh] md:min-h-screen w-full flex items-center justify-center overflow-hidden bg-stone-900 pt-20 md:pt-0">
       <div className="absolute inset-0 z-0">
         <img
           src="/hero-img.png"
@@ -18,7 +18,7 @@ const Hero = () => {
       <div className="absolute bottom-10 right-6 sm:bottom-20 sm:right-20 w-52 h-52 sm:w-80 sm:h-80 bg-stone-100/10 rounded-full blur-3xl animate-pulse delay-1000" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-10 text-center">
-        <div className="flex items-center justify-center gap-2 mb-6 sm:mb-8 animate-in fade-in slide-in-from-top-4 duration-700">
+        <div className="flex items-center justify-center gap-2 mb-4 sm:mb-8 animate-in fade-in slide-in-from-top-4 duration-700">
           <HiSparkles className="text-amber-500 text-lg sm:text-xl" />
           <span className="text-amber-400 font-black text-[9px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em]">
             Nature's Exclusive Selection
@@ -26,12 +26,12 @@ const Hero = () => {
           <HiSparkles className="text-amber-500 text-lg sm:text-xl" />
         </div>
 
-        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white mb-6 sm:mb-10 leading-[0.9] tracking-tight drop-shadow-2xl">
+        <h1 className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white mb-4 sm:mb-10 leading-[0.9] tracking-tight drop-shadow-2xl">
           NATURAL <br />
           <span className="text-amber-600 italic font-serif">TREASURES</span>
         </h1>
 
-        <p className="text-stone-300 text-sm sm:text-lg md:text-xl max-w-xl md:max-w-2xl mx-auto mb-10 sm:mb-14 leading-relaxed opacity-90">
+        <p className="text-stone-300 text-[12px] sm:text-lg md:text-xl max-w-xl md:max-w-2xl mx-auto mb-6 sm:mb-14 leading-relaxed opacity-90">
           Elevating your wellness journey with ethically sourced, sun-dried miracles from Earth's most pristine orchards.
         </p>
 
@@ -55,7 +55,7 @@ const Hero = () => {
           </Link>
         </div>
 
-        <div className="mt-14 sm:mt-20 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-10 opacity-50 hover:opacity-100 transition duration-500">
+        <div className="mt-8 sm:mt-20 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-10 opacity-50 hover:opacity-100 transition duration-500">
           {[
             { val: '100%', label: 'ORGANIC' },
             { val: '12K+', label: 'COMMUNITY' },
@@ -63,10 +63,10 @@ const Hero = () => {
             { val: 'FREE', label: 'SHIPPING' }
           ].map((stat, idx) => (
             <div key={idx} className="text-center">
-              <p className="text-lg sm:text-xl md:text-2xl font-black text-white mb-1 hover:text-amber-500 transition-colors">
+              <p className="text-base sm:text-xl md:text-2xl font-black text-white mb-1 hover:text-amber-500 transition-colors">
                 {stat.val}
               </p>
-              <p className="text-[8px] sm:text-[10px] text-stone-400 uppercase tracking-widest">
+              <p className="text-[7px] sm:text-[10px] text-stone-400 uppercase tracking-widest">
                 {stat.label}
               </p>
             </div>

@@ -20,15 +20,15 @@ const Wishlist = () => {
                     <div className="w-24 h-24 bg-rose-50 rounded-full flex items-center justify-center mx-auto mb-8 animate-pulse shadow-xl shadow-rose-100/50">
                         <HiOutlineHeart className="w-10 h-10 text-rose-300" />
                     </div>
-                    <h2 className="text-3xl font-black text-stone-900 mb-4 tracking-tighter">Your wishlist is empty</h2>
+                    <h2 className="text-xl md:text-3xl font-black text-stone-900 mb-4 tracking-tighter">Your wishlist is empty</h2>
                     <p className="text-stone-500 mb-10 max-w-sm mx-auto font-medium leading-relaxed">
                         Start hearting your favorites and they'll appear here for you to find easily later!
                     </p>
                     <Link
                         to="/shop"
-                        className="inline-flex items-center gap-3 px-12 py-5 bg-stone-900 text-white rounded-3xl font-black shadow-2xl shadow-stone-900/10 hover:bg-amber-600 transition-all transform hover:-translate-y-1 group"
+                        className="inline-flex items-center gap-3 px-8 md:px-12 py-3 md:py-5 bg-stone-900 text-white rounded-2xl md:rounded-3xl font-black shadow-2xl shadow-stone-900/10 hover:bg-amber-600 transition-all transform hover:-translate-y-1 group"
                     >
-                        <span className="uppercase tracking-widest text-xs">Back to Shopping</span>
+                        <span className="uppercase tracking-widest text-[10px] md:text-xs">Back to Shopping</span>
                         <HiOutlineShoppingBag className="w-5 h-5 group-hover:scale-110 transition-transform" />
                     </Link>
                 </div>
@@ -47,7 +47,7 @@ const Wishlist = () => {
             <section className="bg-white py-16 relative z-10">
                 <div className="max-w-7xl mx-auto px-4 md:px-8">
                     <div className="mb-10 text-center md:text-left">
-                        <h2 className="text-3xl font-black text-stone-900 tracking-tighter">Saved <span className="text-amber-600 italic font-serif">Items</span></h2>
+                        <h2 className="text-2xl md:text-3xl font-black text-stone-900 tracking-tighter">Saved <span className="text-amber-600 italic font-serif">Items</span></h2>
                         <p className="text-stone-400 font-bold text-xs uppercase tracking-widest mt-1">{wishlistItems.length} Products in your collection</p>
                     </div>
 

@@ -55,13 +55,13 @@ const Footer = () => {
                 />
               </div>
               <div className="flex flex-col">
-                <span className="text-2xl font-black text-amber-400 leading-none">
+                <span className="text-xl md:text-2xl font-black text-amber-400 leading-none">
                   Dry<span className="text-amber-600">Fruits</span>
                 </span>
 
               </div>
             </Link>
-            <p className="text-stone-400 text-sm leading-relaxed mb-8 max-w-xs">
+            <p className="text-stone-400 pl-5 text-[10px] md:text-sm leading-relaxed mb-8 max-w-xs">
               Discover nature's finest treasures. We bring you premium quality dry fruits, nuts, and seeds sourced from the best orchards around the globe.
             </p>
             <div className="flex gap-4">
@@ -77,8 +77,8 @@ const Footer = () => {
             </div>
           </div>
 
-          <div>
-            <h4 className="text-white font-bold mb-6 tracking-wide">Shop Categories</h4>
+          <div  className='pl-18'>
+            <h4 className="text-white text-sm md:text-base font-bold mb-6 tracking-wide">Shop Categories</h4>
             <ul className="space-y-3">
               {footerLinks.shop.map((link) => (
                 <li key={link.name}>
@@ -90,8 +90,8 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div>
-            <h4 className="text-white font-bold mb-6 tracking-wide">Customer Care</h4>
+          <div className='pl-15'>
+            <h4 className="text-white text-sm md:text-base font-bold mb-6 tracking-wide">Customer Care</h4>
             <ul className="space-y-3">
               {footerLinks.support.map((link) => (
                 <li key={link.name}>
@@ -103,20 +103,20 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="md:col-span-2 lg:col-span-1 xl:col-span-2">
-            <h4 className="text-white font-bold mb-6 tracking-wide">Stay Healthy</h4>
-            <p className="text-stone-400 text-sm mb-6 max-w-sm">
+          <div className="md:col-span-2 lg:col-span-1 xl:col-span-2 pl-15">
+            <h4 className="text-white text-sm md:text-base font-bold mb-6 tracking-wide">Stay Healthy</h4>
+            <p className="text-stone-400 text-[10px] md:text-sm mb-6 max-w-sm">
               Subscribe to receive wellness tips, nutritional guides, and exclusive offers.
             </p>
             <form className="relative group max-w-md">
               <input
                 type="email"
                 placeholder="Email address"
-                className="w-full bg-stone-800 border border-stone-700 text-white px-6 py-4 rounded-2xl focus:outline-none focus:border-amber-600 transition-all font-medium pr-32"
+                className="w-full bg-stone-800 border border-stone-700 text-white px-4 md:px-6 py-3 md:py-4 rounded-xl md:rounded-2xl focus:outline-none focus:border-amber-600 transition-all font-medium pr-28 md:pr-32 text-xs md:text-base"
               />
               <button
                 type="submit"
-                className="absolute right-2 top-2 bottom-2 bg-amber-600 text-white px-6 rounded-xl font-bold hover:bg-amber-500 transition-all active:scale-95 shadow-lg shadow-amber-600/20"
+                className="absolute right-1.5 top-1.5 bottom-1.5 bg-amber-600 text-white px-4 md:px-6 rounded-lg md:rounded-xl font-bold hover:bg-amber-500 transition-all active:scale-95 shadow-lg shadow-amber-600/20 text-[10px] md:text-base"
               >
                 Join
               </button>

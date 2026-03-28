@@ -26,7 +26,7 @@ export default function Feature() {
   return (
     <section className="bg-white py-24">
       <div className="max-w-7xl mx-auto px-6 text-center mb-16">
-        <h2 className="text-4xl font-extrabold text-stone-800 mb-4">
+        <h2 className="text-2xl md:text-4xl font-extrabold text-stone-800 mb-4">
           Why Choose Us
         </h2>
         <p className="text-stone-500 text-lg">

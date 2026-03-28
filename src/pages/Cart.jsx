@@ -23,13 +23,13 @@ const Cart = () => {
                     <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl border border-stone-100">
                         <HiOutlineShoppingBag className="w-10 h-10 text-stone-300" />
                     </div>
-                    <h2 className="text-3xl font-black text-stone-900 mb-4">Your basket is empty</h2>
+                    <h2 className="text-xl md:text-3xl font-black text-stone-900 mb-4">Your basket is empty</h2>
                     <p className="text-stone-500 mb-10 max-w-sm mx-auto font-medium">
                         Looks like you haven't added any of our premium treasures to your cart yet.
                     </p>
                     <Link
                         to="/shop"
-                        className="inline-flex items-center gap-2 px-10 py-5 bg-amber-600 text-white rounded-3xl font-black shadow-2xl shadow-amber-600/20 hover:bg-stone-900 transition-all transform hover:-translate-y-1"
+                        className="inline-flex items-center gap-2 px-6 md:px-10 py-3 md:py-5 bg-amber-600 text-white rounded-2xl md:rounded-3xl font-black shadow-2xl shadow-amber-600/20 hover:bg-stone-900 transition-all transform hover:-translate-y-1 text-xs md:text-base"
                     >
                         Explore the Shop
                     </Link>
@@ -50,7 +50,7 @@ const Cart = () => {
                 <div className="max-w-7xl mx-auto px-4 md:px-8">
                     <div className="mb-10 flex items-end justify-between">
                         <div>
-                            <h2 className="text-3xl font-black text-stone-900 tracking-tighter">My <span className="text-amber-600 italic font-serif">Basket</span></h2>
+                            <h2 className="text-2xl md:text-3xl font-black text-stone-900 tracking-tighter">My <span className="text-amber-600 italic font-serif">Basket</span></h2>
                             <p className="text-stone-400 font-bold text-[10px] uppercase tracking-[0.2em] mt-1">{cartItems.length} Treasures selected</p>
                         </div>
                     </div>
@@ -62,7 +62,7 @@ const Cart = () => {
                                     key={item.id}
                                     className="bg-stone-50 p-6 rounded-[2.5rem] border border-stone-100 flex flex-col sm:flex-row items-center gap-8 group transition-all hover:bg-white hover:shadow-xl"
                                 >
-                                    <div className="w-28 h-28 rounded-3xl overflow-hidden bg-white flex-shrink-0 border border-stone-100 shadow-sm">
+                                    <div className="w-20 h-20 md:w-28 md:h-28 rounded-2xl md:rounded-3xl overflow-hidden bg-white flex-shrink-0 border border-stone-100 shadow-sm">
                                         <img
                                             src={item.image}
                                             alt={item.name}
@@ -72,7 +72,7 @@ const Cart = () => {
 
                                     <div className="flex-grow text-center sm:text-left">
                                         <p className="text-[10px] font-black uppercase tracking-widest text-amber-600 mb-1">{item.category}</p>
-                                        <h3 className="text-xl font-black text-stone-900 mb-1">{item.name}</h3>
+                                        <h3 className="text-sm md:text-xl font-black text-stone-900 mb-1">{item.name}</h3>
                                         <p className="text-sm font-black text-stone-400">Unit Price: <span className="text-stone-900 font-bold">₹{item.price}</span></p>
                                     </div>
 
@@ -124,14 +124,14 @@ const Cart = () => {
                                     <div className="pt-6 border-t border-stone-200 flex justify-between items-end">
                                         <div>
                                             <p className="text-[10px] font-black uppercase tracking-[0.2em] text-stone-400 mb-1">Total Amount</p>
-                                            <p className="text-4xl font-black text-stone-900 tracking-tighter">₹{total.toFixed(0)}</p>
+                                            <p className="text-2xl md:text-4xl font-black text-stone-900 tracking-tighter">₹{total.toFixed(0)}</p>
                                         </div>
                                     </div>
                                 </div>
 
                                 <button
                                     onClick={() => navigate("/checkout")}
-                                    className="w-full bg-stone-900 text-white py-5 rounded-3xl font-black flex items-center justify-center gap-3 hover:bg-amber-600 transition-all shadow-xl shadow-stone-900/10 transform active:scale-[0.98] group"
+                                    className="w-full bg-stone-900 text-white py-3.5 md:py-5 rounded-2xl md:rounded-3xl font-black flex items-center justify-center gap-3 hover:bg-amber-600 transition-all shadow-xl shadow-stone-900/10 transform active:scale-[0.98] group"
                                 >
                                     <span className="uppercase tracking-widest text-[10px]">Secure Checkout</span>
                                     <HiArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />

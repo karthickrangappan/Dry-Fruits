@@ -1,1 +1,43 @@
 @import "tailwindcss";
+
+/* Swiper Custom Styling */
+:root {
+  --swiper-theme-color: #d97706;
+  /* amber-600 */
+  --swiper-navigation-size: 24px;
+}
+
+.reviews-swiper .swiper-pagination-bullet {
+  @apply bg-stone-300 opacity-100;
+}
+
+.reviews-swiper .swiper-pagination-bullet-active {
+  @apply bg-amber-600;
+  width: 24px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.reviews-swiper .swiper-button-next,
+.reviews-swiper .swiper-button-prev {
+  @apply w-12 h-12 bg-white rounded-2xl shadow-xl border border-stone-100 text-stone-900 transition-all hover:bg-stone-900 hover:text-white after:text-[14px] after:font-black;
+  top: auto;
+  bottom: 0px;
+}
+
+.reviews-swiper .swiper-button-prev {
+  left: auto;
+  right: 70px;
+}
+
+.reviews-swiper .swiper-button-next {
+  right: 16px;
+}
+
+@media (max-width: 768px) {
+
+  .reviews-swiper .swiper-button-next,
+  .reviews-swiper .swiper-button-prev {
+    display: none;
+  }
+}

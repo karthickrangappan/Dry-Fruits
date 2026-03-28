@@ -3,7 +3,7 @@ import { useShop } from "../context/ShopContext";
 import PageHeader from "../components/layout/PageHeader";
 
 const Profile = () => {
-    const { user, orders } = useShop();
+    const { user, orders, cartCount } = useShop();
 
     if (!user) {
         return (
@@ -36,14 +36,14 @@ const Profile = () => {
                     <div className="flex flex-col md:flex-row gap-12 items-center md:items-start">
                         <div className="relative group">
                             <div className="absolute inset-0 bg-amber-200 rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition-opacity" />
-                            <div className="w-40 h-40 rounded-full border-8 border-stone-50 bg-amber-100 flex items-center justify-center text-6xl text-amber-600 font-black shadow-xl relative z-10 transform transition-transform group-hover:scale-105">
+                            <div className="w-24 h-24 md:w-40 md:h-40 rounded-full border-4 md:border-8 border-stone-50 bg-amber-100 flex items-center justify-center text-3xl md:text-6xl text-amber-600 font-black shadow-xl relative z-10 transform transition-transform group-hover:scale-105">
                                 {user.name?.[0]?.toUpperCase()}
                             </div>
                         </div>
 
                         <div className="flex-1 space-y-8 w-full">
                             <div className="border-b border-stone-100 pb-8 text-center md:text-left">
-                                <h1 className="text-4xl font-black text-stone-900 mb-2 tracking-tighter">{user.name}</h1>
+                                <h1 className="text-2xl md:text-4xl font-black text-stone-900 mb-2 tracking-tighter">{user.name}</h1>
                                 <p className="text-stone-400 font-bold uppercase tracking-widest text-xs flex items-center justify-center md:justify-start gap-2">
                                     <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
                                     Active Member
@@ -68,13 +68,13 @@ const Profile = () => {
                             <div className="pt-8 border-t border-stone-100">
                                 <h2 className="text-xl font-black text-stone-900 mb-6 tracking-tight">Account Overview</h2>
                                 <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                                    <div className="bg-stone-50 p-6 rounded-3xl border border-stone-100 text-center hover:bg-white hover:shadow-xl transition-all group">
-                                        <p className="text-stone-400 text-[10px] font-black uppercase tracking-widest mb-2 group-hover:text-amber-600 transition-colors">Total Orders</p>
-                                        <p className="text-3xl font-black text-stone-900">{orders?.length || 0}</p>
+                                    <div className="bg-stone-50 p-4 md:p-6 rounded-2xl md:rounded-3xl border border-stone-100 text-center hover:bg-white hover:shadow-xl transition-all group">
+                                        <p className="text-stone-400 text-[10px] font-black uppercase tracking-widest mb-1 md:mb-2 group-hover:text-amber-600 transition-colors">Total Orders</p>
+                                        <p className="text-xl md:text-3xl font-black text-stone-900">{orders?.length || 0}</p>
                                     </div>
-                                    <div className="bg-stone-50 p-6 rounded-3xl border border-stone-100 text-center hover:bg-white hover:shadow-xl transition-all group">
-                                        <p className="text-stone-400 text-[10px] font-black uppercase tracking-widest mb-2 group-hover:text-emerald-600 transition-colors">Rewards</p>
-                                        <p className="text-3xl font-black text-stone-900">0 pts</p>
+                                    <div className="bg-stone-50 p-4 md:p-6 rounded-2xl md:rounded-3xl border border-stone-100 text-center hover:bg-white hover:shadow-xl transition-all group">
+                                        <p className="text-stone-400 text-[10px] font-black uppercase tracking-widest mb-1 md:mb-2 group-hover:text-emerald-600 transition-colors">cart</p>
+                                        <p className="text-xl md:text-3xl font-black text-stone-900">{cartCount || 0}</p>
                                     </div>
                                     <div className="bg-stone-50 p-6 rounded-3xl border border-stone-100 text-center hover:bg-white hover:shadow-xl transition-all group col-span-2 md:col-span-1">
                                         <p className="text-stone-400 text-[10px] font-black uppercase tracking-widest mb-2 group-hover:text-blue-600 transition-colors">Status</p>

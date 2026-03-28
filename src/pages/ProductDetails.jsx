@@ -2,13 +2,19 @@ import React, { useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ProductCard, { products } from '../components/product/ProductCard';
 import { useShop } from '../context/ShopContext';
-import { HiOutlineShoppingBag, HiOutlineHeart, HiChevronLeft } from 'react-icons/hi';
+import { HiOutlineShoppingBag, HiOutlineHeart, HiChevronLeft, HiPlus, HiMinus } from 'react-icons/hi';
 import PageHeader from '../components/layout/PageHeader';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 const ProductDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const { addToCart, toggleWishlist, user, clearCart } = useShop();
+    const [localQuantity, setLocalQuantity] = React.useState(1);
 
     const product = products.find(p => p.id === Number(id));
 
@@ -39,7 +45,7 @@ const ProductDetails = () => {
 
     const handleAddToCart = () => {
         if (!user) return navigate('/login');
-        addToCart(product);
+        addToCart(product, localQuantity);
     };
 
     const handleAddToWishlist = () => {
@@ -50,7 +56,7 @@ const ProductDetails = () => {
     const handleBuyNow = () => {
         if (!user) return navigate('/login');
         clearCart();
-        addToCart(product);
+        addToCart(product, localQuantity);
         navigate('/checkout');
     };
 
@@ -72,14 +78,14 @@ const ProductDetails = () => {
                         Back to Collection
                     </button>
 
-                    <div className="grid lg:grid-cols-2 gap-16 items-start">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
                         <div className="relative group">
                             <div className="absolute inset-0 bg-amber-100/50 rounded-[3rem] transform rotate-3 -z-10 transition-transform group-hover:rotate-1" />
                             <div className="bg-stone-50 p-6 rounded-[3rem] shadow-inner overflow-hidden relative border border-stone-100">
                                 <img
                                     src={product.image}
                                     alt={product.name}
-                                    className="w-full h-[500px] object-cover rounded-[2rem] transform transition-transform duration-1000 group-hover:scale-105"
+                                    className="w-full h-[350px] md:h-[500px] object-cover rounded-[2rem] transform transition-transform duration-1000 group-hover:scale-105"
                                 />
                                 {product.isNew && (
                                     <span className="absolute top-12 left-12 bg-white/90 backdrop-blur-md px-6 py-2.5 rounded-full text-[10px] font-black tracking-[0.2em] text-emerald-700 shadow-xl border border-emerald-100 uppercase">
@@ -97,7 +103,7 @@ const ProductDetails = () => {
                                         {product.category}
                                     </span>
                                 </div>
-                                <h1 className="text-5xl md:text-6xl font-black text-stone-900 leading-tight mb-4 tracking-tighter">
+                                <h1 className="text-2xl md:text-5xl lg:text-6xl font-black text-stone-900 leading-tight mb-4 tracking-tighter">
                                     {product.name}
                                 </h1>
                                 <div className="flex items-center gap-6 pt-2">
@@ -109,41 +115,94 @@ const ProductDetails = () => {
                                 </div>
                             </div>
 
-                            <p className="text-stone-500 text-lg leading-relaxed font-medium">
+                            <p className="text-stone-500 text-sm md:text-lg leading-relaxed font-medium">
                                 {product.description}
                             </p>
 
                             <div className="flex items-end gap-6 py-4">
                                 <div className="flex flex-col">
                                     <span className="text-stone-300 line-through font-black text-xl mb-1 italic">₹{product.oldPrice}</span>
-                                    <span className="text-6xl font-black text-amber-600 tracking-tighter">
+                                    <span className="text-3xl md:text-6xl font-black text-amber-600 tracking-tighter">
                                         ₹{product.price}
                                     </span>
                                 </div>
-                                <div className="bg-emerald-50 text-emerald-700 px-4 py-2 rounded-2xl text-[10px] font-black uppercase tracking-widest mb-2 border border-emerald-100">
+                                <div className="bg-emerald-50 text-emerald-700 px-3 md:px-4 py-1.5 md:py-2 rounded-xl md:rounded-2xl text-[8px] md:text-[10px] font-black uppercase tracking-widest mb-1.5 md:mb-2 border border-emerald-100">
                                     Save ₹{product.oldPrice - product.price} Now
+                                </div>
+                                <div className="bg-amber-50 text-amber-700 px-6 md:px-4 py-1.5 md:py-2 rounded-xl md:rounded-2xl text-[8px] md:text-[10px] font-black uppercase tracking-widest mb-1.5 md:mb-2 border border-amber-100">
+                                    {localQuantity} x {product.price} = ₹{product.price * localQuantity}
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-6 gap-3 pt-4">
+                            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3 pt-4">
+
+                                {/* Buy Button */}
                                 <button
                                     onClick={handleBuyNow}
-                                    className="col-span-4 flex items-center justify-center gap-3 bg-stone-900 text-white py-6 rounded-3xl font-black uppercase tracking-[0.2em] text-xs hover:bg-amber-600 transition-all transform hover:-translate-y-1 active:scale-95 shadow-2xl shadow-stone-900/10"
+                                    className="col-span-2 sm:col-span-2 lg:col-span-2 flex items-center justify-center gap-2 
+        bg-stone-900 text-white py-3 sm:py-4 lg:py-5 
+        rounded-xl sm:rounded-2xl lg:rounded-3xl 
+        font-bold uppercase tracking-wider text-[10px] sm:text-xs lg:text-sm
+        hover:bg-amber-600 transition-all transform hover:-translate-y-1 active:scale-95 
+        shadow-lg"
                                 >
                                     Proceed to Buy
                                 </button>
+
+                                <div className="col-span-2 sm:col-span-2 lg:col-span-2 flex items-center justify-between 
+                                                bg-white rounded-xl sm:rounded-2xl lg:rounded-3xl 
+                                                px-2 sm:px-3 py-1.5 sm:py-2 
+                                                shadow-sm border border-stone-200">
+
+                                    <button
+                                        onClick={() => setLocalQuantity(prev => Math.max(1, prev - 1))}
+                                        className="p-2 text-stone-500 hover:text-amber-600 hover:bg-stone-100 rounded-lg transition"
+                                    >
+                                        <HiMinus className="w-4 h-4 sm:w-5 sm:h-5" />
+                                    </button>
+
+                                    <span className="w-8 sm:w-10 text-center text-sm sm:text-base font-bold text-stone-900">
+                                        {localQuantity}
+                                    </span>
+
+                                    <button
+                                        onClick={() => setLocalQuantity(prev => prev + 1)}
+                                        className="p-2 text-stone-500 hover:text-amber-600 hover:bg-stone-100 rounded-lg transition"
+                                    >
+                                        <HiPlus className="w-4 h-4 sm:w-5 sm:h-5" />
+                                    </button>
+                                </div>
+
                                 <button
                                     onClick={handleAddToCart}
-                                    className="col-span-1 flex items-center justify-center bg-stone-50 text-stone-900 border-2 border-stone-100 rounded-3xl hover:border-amber-500 hover:text-amber-600 transition-all transform hover:-translate-y-1 active:scale-95 shadow-xl shadow-stone-900/5 group"
+                                    className="flex items-center justify-center 
+                                    bg-stone-50 text-stone-900 border border-stone-200 
+    
+                                    p-3 sm:p-2 lg:p-3   
+    
+                                    rounded-xl sm:rounded-2xl lg:rounded-3xl 
+                                    hover:border-amber-500 hover:text-amber-600 
+                                    transition-all transform hover:-translate-y-1 active:scale-95 
+                                    shadow-md"
                                 >
-                                    <HiOutlineShoppingBag className="text-2xl transition-transform group-hover:scale-110" />
+                                    <HiOutlineShoppingBag className="text-xl sm:text-2xl" />
                                 </button>
+
                                 <button
                                     onClick={handleAddToWishlist}
-                                    className="col-span-1 flex items-center justify-center bg-stone-50 text-stone-900 border-2 border-stone-100 rounded-3xl hover:border-rose-500 hover:text-rose-500 transition-all transform hover:-translate-y-1 active:scale-95 shadow-xl shadow-stone-900/5 group"
+                                    className="flex items-center justify-center 
+                                    bg-stone-50 text-stone-900 border border-stone-200 
+    
+                                    p-3 sm:p-2 lg:p-3   
+    
+                                    rounded-xl sm:rounded-2xl lg:rounded-3xl 
+                                    hover:border-rose-500 hover:text-rose-500 
+                                    transition-all transform hover:-translate-y-1 active:scale-95 
+                                    shadow-md"
                                 >
-                                    <HiOutlineHeart className="text-2xl transition-transform group-hover:scale-110" />
+                                    <HiOutlineHeart className="text-xl sm:text-2xl" />
                                 </button>
+
                             </div>
 
                             <div className="pt-10 mt-4 border-t border-stone-100 grid grid-cols-2 gap-6">
@@ -163,16 +222,15 @@ const ProductDetails = () => {
                         </div>
                     </div>
 
-                    {/* Static Reviews Section */}
                     <div className="mt-24 pt-24 border-t border-stone-100">
                         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
                             <div>
-                                <h2 className="text-4xl font-black text-stone-900 tracking-tighter mb-4">
+                                <h2 className="text-3xl md:text-4xl font-black text-stone-900 tracking-tighter mb-4">
                                     Customer <span className="text-amber-600 italic font-serif">Kindness</span>
                                 </h2>
-                                <p className="text-stone-400 font-bold text-[10px] uppercase tracking-[0.2em]">What our nature-conscious community thinks</p>
+                                <p className="text-stone-400 font-bold text-[9px] md:text-[10px] uppercase tracking-[0.2em]">What our nature-conscious community thinks</p>
                             </div>
-                            <div className="flex items-center gap-8 bg-stone-50 px-10 py-8 rounded-[2.5rem] border border-stone-100 shadow-inner">
+                            <div className="flex flex-col sm:flex-row items-center gap-8 bg-stone-50 px-6 sm:px-10 py-6 sm:py-8 rounded-[2rem] sm:rounded-[2.5rem] border border-stone-100 shadow-inner">
                                 <div className="text-center">
                                     <p className="text-4xl font-black text-stone-900 leading-none mb-1">{product.rating}</p>
                                     <div className="flex justify-center gap-0.5 mb-1">
@@ -199,13 +257,25 @@ const ProductDetails = () => {
                             </div>
                         </div>
 
-                        <div className="grid md:grid-cols-2 gap-10">
+                        <Swiper
+                            modules={[Autoplay]}
+                            spaceBetween={30}
+                            slidesPerView={1}
+                            loop={true}
+                            autoplay={true}
+                            breakpoints={{
+                                768: {
+                                    slidesPerView: 2,
+                                },
+                            }}
+                            className="reviews-swiper !pb-6"
+                        >
                             {[
                                 {
                                     name: "Ananya Sharma",
                                     date: "March 15, 2026",
                                     rating: 5,
-                                    comment: "Absolutely premium quality! You can taste the freshness in every bite. The packaging was also very sturdy and high-end. Will definitely order again.",
+                                    comment: "Absolutely premium quality! You can taste the freshness in every bite. The packaging was also very sturdy and high-end. ",
                                     avatar: "AS"
                                 },
                                 {
@@ -230,36 +300,38 @@ const ProductDetails = () => {
                                     avatar: "RK"
                                 }
                             ].map((review, idx) => (
-                                <div key={idx} className="p-10 bg-stone-50 rounded-[3rem] border border-stone-100 hover:border-amber-200 hover:bg-white transition-all duration-500 group shadow-sm hover:shadow-xl">
-                                    <div className="flex justify-between items-start mb-6">
-                                        <div className="flex items-center gap-4">
-                                            <div className="w-14 h-14 bg-stone-900 rounded-2xl flex items-center justify-center text-white font-black text-sm shadow-xl group-hover:bg-amber-600 transition-colors">
-                                                {review.avatar}
+                                <SwiperSlide key={idx}>
+                                    <div className="p-8 bg-stone-50 rounded-2xl border border-stone-100 hover:border-amber-200 hover:bg-white transition-all duration-500 group shadow-sm hover:shadow-xl h-full">
+                                        <div className="flex justify-between items-start mb-6">
+                                            <div className="flex items-center gap-4">
+                                                <div className="w-14 h-14 bg-stone-900 rounded-2xl flex items-center justify-center text-white font-black text-sm shadow-xl group-hover:bg-amber-600 transition-colors">
+                                                    {review.avatar}
+                                                </div>
+                                                <div>
+                                                    <h4 className="font-black text-stone-900 text-lg">{review.name}</h4>
+                                                    <p className="text-[10px] font-black text-stone-400 uppercase tracking-widest">{review.date}</p>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <h4 className="font-black text-stone-900 text-lg">{review.name}</h4>
-                                                <p className="text-[10px] font-black text-stone-400 uppercase tracking-widest">{review.date}</p>
+                                            <div className="flex gap-0.5">
+                                                {[...Array(5)].map((_, i) => (
+                                                    <span key={i} className={`text-xs ${i < review.rating ? 'text-amber-500' : 'text-stone-300'}`}>⭐</span>
+                                                ))}
                                             </div>
                                         </div>
-                                        <div className="flex gap-0.5">
-                                            {[...Array(5)].map((_, i) => (
-                                                <span key={i} className={`text-xs ${i < review.rating ? 'text-amber-500' : 'text-stone-300'}`}>⭐</span>
-                                            ))}
-                                        </div>
+                                        <p className="text-stone-500 font-medium leading-relaxed group-hover:text-stone-700 transition-colors">
+                                            "{review.comment}"
+                                        </p>
                                     </div>
-                                    <p className="text-stone-500 font-medium leading-relaxed group-hover:text-stone-700 transition-colors">
-                                        "{review.comment}"
-                                    </p>
-                                </div>
+                                </SwiperSlide>
                             ))}
-                        </div>
+                        </Swiper>
                     </div>
 
                     {relatedProducts.length > 0 && (
-                        <div className="mt-24 pt-24 border-t border-stone-100">
+                        <div className="mt-10 pt-10 border-t border-stone-100">
                             <div className="flex items-end justify-between mb-12">
                                 <div>
-                                    <h2 className="text-4xl font-black text-stone-900 tracking-tighter">
+                                    <h2 className="text-2xl md:text-4xl font-black text-stone-900 tracking-tighter">
                                         Related <span className="text-amber-600 italic font-serif">Treasures</span>
                                     </h2>
                                     <p className="text-stone-400 font-bold text-[10px] uppercase tracking-[0.2em] mt-2">You might also like these premium selections</p>
