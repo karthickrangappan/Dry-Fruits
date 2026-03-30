@@ -111,9 +111,9 @@ const Checkout = () => {
             
             <section className="py-16 pb-32">
                 <div className="max-w-7xl mx-auto px-4 md:px-8">
-                    <div className="flex flex-col lg:flex-row gap-12 items-start">
+                    <div className="flex flex-col lg:flex-row gap-12 lg:items-start">
                         
-                        <div className="flex-grow bg-white/70 backdrop-blur-xl p-6 md:p-10 rounded-3xl md:rounded-[3rem] border border-stone-100 shadow-xl">
+                        <div className="w-full lg:flex-1 bg-white/70 backdrop-blur-xl p-6 md:p-10 rounded-3xl md:rounded-[3rem] border border-stone-100 shadow-xl">
                             
                             <h2 className="text-2xl md:text-4xl font-extrabold text-stone-900 mb-8 md:mb-10 tracking-tight">
                                 Shipping <span className="text-amber-600 italic font-serif">Information</span>
