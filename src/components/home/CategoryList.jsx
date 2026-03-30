@@ -62,20 +62,20 @@ const CategoryList = () => {
     };
 
     return (
-        <section className="py-20 px-4 md:px-8 bg-white">
+        <section className="py-16 sm:py-20 px-4 md:px-8 bg-white">
             <div className="max-w-7xl mx-auto">
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
-                    <div className="max-w-2xl">
-                        <h4 className="text-amber-600 font-black uppercase tracking-[0.3em] text-sm mb-4">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 sm:gap-8 mb-12 sm:mb-16">
+                    <div className="max-w-2xl text-center md:text-left mx-auto md:mx-0">
+                        <h4 className="text-amber-600 font-black uppercase tracking-[0.3em] text-xs sm:text-sm mb-3 sm:mb-4">
                             Explore Collections
                         </h4>
-                        <h2 className="text-2xl md:text-5xl font-black text-stone-900 leading-tight">
+                        <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-stone-900 leading-tight">
                             Shop by <span className="text-amber-600">Categories</span>
                         </h2>
                     </div>
                     <button
                         onClick={() => navigate('/categories')}
-                        className="px-6 md:px-8 py-2.5 md:py-4 bg-stone-900 text-white font-bold rounded-xl md:rounded-2xl hover:bg-stone-800 transition-all duration-300 transform hover:-translate-y-1 text-xs md:text-base"
+                        className="inline-flex w-auto self-center md:self-auto px-4 sm:px-6 md:px-8 py-2.5 md:py-4 bg-stone-900 text-white font-bold rounded-xl md:rounded-2xl hover:bg-stone-800 transition-all duration-300 transform hover:-translate-y-1 text-[11px] sm:text-xs md:text-base text-center"
                     >
                         View All Categories
                     </button>

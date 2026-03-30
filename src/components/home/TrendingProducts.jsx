@@ -14,7 +14,7 @@ const TrendingProducts = () => {
         <section className="py-32 bg-stone-50 overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 md:px-8">
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
-                    <div className="max-w-2xl">
+                    <div className="max-w-2xl text-center md:text-left mx-auto md:mx-0">
                         <span className="text-amber-600 font-black uppercase tracking-[0.4em] text-[10px] mb-4 block">
                             Curated Selection
                         </span>

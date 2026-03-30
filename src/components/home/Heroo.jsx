@@ -46,19 +46,19 @@ const Heroo = () => {
             <span className="text-amber-600">Dry Fruits</span>
           </h1>
 
-          <p className="text-stone-500 font-black text-xs sm:text-sm md:text-base mb-6 sm:mb-8 max-w-md sm:max-w-lg mx-auto md:mx-0 leading-relaxed italic">
+          <p className="text-stone-500 font-bold text-[13px] sm:text-sm md:text-base mb-6 sm:mb-8 max-w-[18rem] sm:max-w-lg mx-auto md:mx-0 leading-6 sm:leading-relaxed italic px-2 sm:px-0">
             "Experience the perfect blend of taste and health with our premium selections."
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
+          <div className="flex flex-col sm:flex-row items-center md:items-start gap-3 sm:gap-4 justify-center md:justify-start">
             <button
               onClick={() => navigate('/shop')}
-              className="px-5 sm:px-6 py-2.5 sm:py-3 bg-amber-600 text-white font-black rounded-xl md:rounded-2xl shadow-xl hover:bg-amber-700 transition-all duration-300 text-xs sm:text-sm md:text-base uppercase tracking-[0.2em] transition-all duration-300 transform hover:-translate-y-1"
+              className="inline-flex w-auto px-4 sm:px-6 py-2.5 sm:py-3 bg-amber-600 text-white font-black rounded-xl md:rounded-2xl shadow-xl hover:bg-amber-700 transition-all duration-300 text-xs sm:text-sm md:text-base uppercase tracking-[0.2em] transform hover:-translate-y-1"
             >
               Shop Now
             </button>
 
-            <button className="px-5 sm:px-6 py-2.5 sm:py-3 border border-stone-300 font-black rounded-xl md:rounded-2xl text-xs sm:text-sm md:text-base uppercase tracking-[0.2em] hover:bg-stone-100 transition transition-all duration-300 transform hover:-translate-y-1">
+            <button className="inline-flex w-auto px-4 sm:px-6 py-2.5 sm:py-3 border border-stone-300 font-black rounded-xl md:rounded-2xl text-xs sm:text-sm md:text-base uppercase tracking-[0.2em] hover:bg-stone-100 transition-all duration-300 transform hover:-translate-y-1">
               Explore
             </button>
           </div>
