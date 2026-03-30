@@ -1,8 +1,10 @@
 import React from 'react';
 import PageHeader from '../components/layout/PageHeader';
+import { useNavigate } from 'react-router-dom';
 import { HiOutlineTruck, HiOutlineShieldCheck, HiOutlineShoppingBag, HiOutlineSparkles, HiOutlineRefresh, HiOutlineChatAlt2 } from 'react-icons/hi';
 
 const Services = () => {
+    const navigate=useNavigate();
     return (
         <main className="bg-white min-h-screen">
             <PageHeader title="Nature Services" subtitle="We're committed to delivering nature's finest treasures with unparalleled service quality." />
@@ -73,7 +75,9 @@ const Services = () => {
                     <p className="text-stone-400 font-medium mb-12 max-w-2xl mx-auto text-center">
                         Join our community of over 12,000 health-conscious individuals who trust KK Dry Fruits for their daily nutritional treasures.
                     </p>
-                    <button className="px-12 py-5 bg-amber-600 text-white rounded-3xl font-black uppercase tracking-widest text-xs hover:bg-white hover:text-stone-900 transition-all transform hover:-translate-y-1 shadow-2xl shadow-amber-600/20">
+                    <button 
+                    onClick={()=>navigate("/shop")} 
+                    className="px-12 py-5 bg-amber-600 text-white rounded-3xl font-black uppercase tracking-widest text-xs hover:bg-white hover:text-stone-900 transition-all transform hover:-translate-y-1 shadow-2xl shadow-amber-600/20">
                         Start Shopping Now
                     </button>
                 </div>

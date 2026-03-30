@@ -28,7 +28,7 @@ const Contact = () => {
                                     </div>
                                     <div>
                                         <p className="text-[10px] font-black text-stone-400 uppercase tracking-widest mb-1">Send Email</p>
-                                        <p className="font-black text-stone-900 text-lg">hello@kkdryfruits.com</p>
+                                        <p className="font-black text-stone-900 text-lg">karthickrangappan@gmail.com</p>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-6 group hover:translate-x-2 transition-transform duration-500">
@@ -37,7 +37,7 @@ const Contact = () => {
                                     </div>
                                     <div>
                                         <p className="text-[10px] font-black text-stone-400 uppercase tracking-widest mb-1">Quick Call</p>
-                                        <p className="font-black text-stone-900 text-lg">+91 94567 23410</p>
+                                        <p className="font-black text-stone-900 text-lg">+91 8825415354</p>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-6 group hover:translate-x-2 transition-transform duration-500">
@@ -45,8 +45,8 @@ const Contact = () => {
                                         <HiOutlineLocationMarker />
                                     </div>
                                     <div>
-                                        <p className="text-[10px] font-black text-stone-400 uppercase tracking-widest mb-1">Our Studio</p>
-                                        <p className="font-black text-stone-900 text-lg">7th Floor, Orchard Tower, Bangalore 560001</p>
+                                        <p className="text-[10px] font-black text-stone-400 uppercase tracking-widest mb-1">Our location</p>
+                                        <p className="font-black text-stone-900 text-lg">Madipakkam,<br /> Kanchipuram district, <br /> Chennai - 600091, <br /> Tamil Nadu, India</p>
                                     </div>
                                 </div>
                             </div>
