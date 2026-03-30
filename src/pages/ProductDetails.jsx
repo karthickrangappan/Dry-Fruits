@@ -80,11 +80,11 @@ const ProductDetails = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
                         <div className="relative group">
                             <div className="absolute inset-0 bg-amber-100/50 rounded-[3rem] transform rotate-3 -z-10 transition-transform group-hover:rotate-1" />
-                            <div className="bg-stone-50 p-6 rounded-[3rem] shadow-inner overflow-hidden relative border border-stone-100">
+                            <div className="bg-stone-50 p-4 sm:p-6 rounded-[2rem] sm:rounded-[3rem] shadow-inner overflow-hidden relative border border-stone-100">
                                 <img
                                     src={product.image}
                                     alt={product.name}
-                                    className="w-full h-[350px] md:h-[500px] object-cover rounded-[2rem] transform transition-transform duration-1000 group-hover:scale-105"
+                                    className="w-full max-w-[240px] sm:max-w-[320px] md:max-w-none mx-auto h-[220px] sm:h-[300px] md:h-[500px] object-contain md:object-cover rounded-[1.5rem] sm:rounded-[2rem] transform transition-transform duration-1000 group-hover:scale-105"
                                 />
                                 {product.isNew && (
                                     <span className="absolute top-12 left-12 bg-white/90 backdrop-blur-md px-6 py-2.5 rounded-full text-[10px] font-black tracking-[0.2em] text-emerald-700 shadow-xl border border-emerald-100 uppercase">

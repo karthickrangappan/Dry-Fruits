@@ -18,44 +18,44 @@ const Hero = () => {
       <div className="absolute bottom-10 right-6 sm:bottom-20 sm:right-20 w-52 h-52 sm:w-80 sm:h-80 bg-stone-100/10 rounded-full blur-3xl animate-pulse delay-1000" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-10 text-center">
-        <div className="flex items-center justify-center gap-2 mb-4 sm:mb-8 animate-in fade-in slide-in-from-top-4 duration-700">
-          <HiSparkles className="text-amber-500 text-lg sm:text-xl" />
-          <span className="text-amber-400 font-black text-[9px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em]">
+        <div className="flex items-center justify-center gap-2 md:gap-3 mb-4 sm:mb-8 md:mb-10 animate-in fade-in slide-in-from-top-4 duration-700">
+          <HiSparkles className="text-amber-500 text-lg sm:text-xl md:text-2xl" />
+          <span className="text-amber-400 font-black text-[9px] sm:text-[10px] md:text-xs uppercase tracking-[0.3em] sm:tracking-[0.4em]">
             Nature's Exclusive Selection
           </span>
-          <HiSparkles className="text-amber-500 text-lg sm:text-xl" />
+          <HiSparkles className="text-amber-500 text-lg sm:text-xl md:text-2xl" />
         </div>
 
-        <h1 className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white mb-4 sm:mb-10 leading-[0.9] tracking-tight drop-shadow-2xl">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-white mb-6 sm:mb-10 md:mb-12 leading-tight md:leading-[0.9] tracking-tight drop-shadow-2xl">
           NATURAL <br />
           <span className="text-amber-600 italic font-serif">TREASURES</span>
         </h1>
 
-        <p className="text-stone-300 text-[12px] sm:text-lg md:text-xl max-w-xl md:max-w-2xl mx-auto mb-6 sm:mb-14 leading-relaxed opacity-90">
+        <p className="text-stone-300 text-sm sm:text-base md:text-xl lg:text-2xl max-w-[280px] sm:max-w-xl md:max-w-3xl lg:max-w-4xl mx-auto mb-8 sm:mb-12 md:mb-16 leading-relaxed opacity-90">
           Elevating your wellness journey with ethically sourced, sun-dried miracles from Earth's most pristine orchards.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8 w-full max-w-sm sm:max-w-none mx-auto">
           <Link
             to="/shop"
-            className="group relative px-8 sm:px-10 md:px-12 py-3 sm:py-4 bg-amber-600 text-white font-bold rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl hover:shadow-amber-600/30 active:scale-95 transition-all"
+            className="w-full sm:w-auto group relative px-8 sm:px-10 md:px-14 py-3.5 sm:py-4 md:py-5 bg-amber-600 text-white font-bold rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl hover:shadow-amber-600/30 active:scale-95 transition-all flex justify-center"
           >
             <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity" />
-            <span className="relative z-10 uppercase tracking-wider text-xs sm:text-sm flex items-center gap-2">
-              Explore Collection <HiOutlineArrowRight />
+            <span className="relative z-10 uppercase tracking-wider text-xs sm:text-sm md:text-base flex items-center gap-2">
+              Explore Collection <HiOutlineArrowRight className="md:text-lg" />
             </span>
           </Link>
 
           <Link
             to="/services"
-            className="group px-6 sm:px-8 py-3 sm:py-4 border border-white/30 hover:border-white text-white font-bold rounded-2xl sm:rounded-3xl transition-all active:scale-95 flex items-center gap-2"
+            className="w-full sm:w-auto group px-6 sm:px-8 md:px-10 py-3.5 sm:py-4 md:py-5 border border-white/30 hover:border-white text-white font-bold rounded-2xl sm:rounded-3xl transition-all active:scale-95 flex items-center justify-center gap-2"
           >
-            <HiOutlineShoppingBag className="text-lg opacity-70 group-hover:opacity-100 transition" />
-            <span className="uppercase tracking-wider text-xs sm:text-sm">Our Services</span>
+            <HiOutlineShoppingBag className="text-lg md:text-xl opacity-70 group-hover:opacity-100 transition" />
+            <span className="uppercase tracking-wider text-xs sm:text-sm md:text-base">Our Services</span>
           </Link>
         </div>
 
-        <div className="mt-8 sm:mt-20 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-10 opacity-50 hover:opacity-100 transition duration-500">
+        <div className="mt-12 sm:mt-16 md:mt-20 lg:mt-28 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-10 md:gap-12 lg:gap-16 opacity-70 hover:opacity-100 transition duration-500 max-w-4xl md:max-w-5xl lg:max-w-6xl mx-auto">
           {[
             { val: '100%', label: 'ORGANIC' },
             { val: '12K+', label: 'COMMUNITY' },
@@ -63,10 +63,10 @@ const Hero = () => {
             { val: 'FREE', label: 'SHIPPING' }
           ].map((stat, idx) => (
             <div key={idx} className="text-center">
-              <p className="text-base sm:text-xl md:text-2xl font-black text-white mb-1 hover:text-amber-500 transition-colors">
+              <p className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-black text-white mb-1 md:mb-2 hover:text-amber-500 transition-colors">
                 {stat.val}
               </p>
-              <p className="text-[7px] sm:text-[10px] text-stone-400 uppercase tracking-widest">
+              <p className="text-[9px] sm:text-[10px] md:text-sm text-stone-400 uppercase tracking-widest font-bold">
                 {stat.label}
               </p>
             </div>

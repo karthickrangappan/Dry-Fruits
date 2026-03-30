@@ -253,12 +253,12 @@ export const ProductCard = ({ product }) => {
 
             <div
                 onClick={handleNavigate}
-                className="relative h-48 md:h-64 overflow-hidden cursor-pointer  "
+                className="relative h-40 sm:h-44 md:h-64 overflow-hidden cursor-pointer"
             >
                 <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition duration-1000 ease-out"
+                    className="w-full h-full max-w-[78%] sm:max-w-[82%] md:max-w-full mx-auto object-contain md:object-cover transform group-hover:scale-110 transition duration-1000 ease-out"
                 />
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>

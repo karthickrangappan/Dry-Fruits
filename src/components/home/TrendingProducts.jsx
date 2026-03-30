@@ -18,9 +18,9 @@ const TrendingProducts = () => {
                         <span className="text-amber-600 font-black uppercase tracking-[0.4em] text-[10px] mb-4 block">
                             Curated Selection
                         </span>
-                        <h2 className="text-3xl md:text-7xl font-black text-stone-900 tracking-tighter leading-none">
+                        <h2 className="text-2xl md:text-5xl lg:text-6xl font-black text-stone-900 tracking-tighter leading-none">
                             Trending <br />
-                            <span className="text-amber-600 italic font-serif text-4xl md:text-8xl">Essentials</span>
+                            <span className="text-amber-600 italic font-serif text-3xl md:text-6xl lg:text-7xl">Essentials</span>
                         </h2>
                     </div>
                     <p className="text-stone-500 font-medium max-w-sm text-sm md:text-lg leading-relaxed border-l-2 border-amber-100 pl-8">
