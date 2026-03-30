@@ -63,10 +63,10 @@ export default function OrdersPage() {
               >
                 <button
                   onClick={() => toggleOrder(order.id)}
-                  className="w-full text-left bg-white/50 backdrop-blur-md px-4 md:px-10 py-6 md:py-8 flex flex-wrap items-center justify-between gap-4 md:gap-6 border-b border-stone-100 group-hover:bg-white transition-colors"
+                  className="w-full text-left bg-white/50 backdrop-blur-md px-5 md:px-10 py-5 md:py-8 flex flex-col sm:flex-row sm:items-center justify-between gap-5 border-b border-stone-100 group-hover:bg-white transition-colors"
                 >
-                  <div className="flex flex-wrap gap-4 md:gap-12">
-                    <div>
+                  <div className="grid grid-cols-3 items-start gap-2 sm:gap-8 md:gap-12 w-full sm:w-auto text-left">
+                    <div className="flex flex-col">
                       <p className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-stone-400 mb-1 md:mb-2">
                         Order ID
                       </p>
@@ -92,7 +92,7 @@ export default function OrdersPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 md:gap-6">
+                  <div className="flex items-center justify-between sm:justify-end gap-3 md:gap-6 w-full sm:w-auto mt-2 sm:mt-0">
                     <div
                       className={`px-3 md:px-6 py-1.5 md:py-3 rounded-xl md:rounded-2xl text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] shadow-sm ${
                         order.status === "Delivered"
@@ -159,13 +159,13 @@ export default function OrdersPage() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                       {order.items?.map((item, idx) => (
                         <div
                           key={idx}
-                          className="bg-white p-4 md:p-6 rounded-[2.5rem] border border-stone-100 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 md:gap-8 group/item hover:border-amber-200 transition-all hover:shadow-xl shadow-stone-200/20"
+                          className="bg-white p-3 md:p-6 rounded-3xl md:rounded-[2.5rem] border border-stone-100 flex flex-row items-center gap-4 sm:gap-6 md:gap-8 group/item hover:border-amber-200 transition-all hover:shadow-xl shadow-stone-200/20"
                         >
-                          <div className="w-full h-48 sm:w-40 sm:h-40 md:w-40 md:h-40 lg:w-44 lg:h-44 xl:w-48 xl:h-48 rounded-2xl sm:rounded-3xl md:rounded-[2.5rem] overflow-hidden bg-stone-50 border border-stone-100 flex-shrink-0 shadow-inner group-hover/item:scale-105 transition-transform duration-700">
+                          <div className="w-20 h-20 sm:w-28 sm:h-28 md:w-40 md:h-40 lg:w-44 lg:h-44 xl:w-48 xl:h-48 rounded-2xl sm:rounded-3xl md:rounded-[2.5rem] overflow-hidden bg-stone-50 border border-stone-100 flex-shrink-0 shadow-inner group-hover/item:scale-105 transition-transform duration-700">
                             <img
                               src={item.image}
                               alt={item.name}

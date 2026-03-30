@@ -113,13 +113,13 @@ const Checkout = () => {
                 <div className="max-w-7xl mx-auto px-4 md:px-8">
                     <div className="flex flex-col lg:flex-row gap-12 items-start">
                         
-                        <div className="flex-grow bg-white/70 backdrop-blur-xl p-8 md:p-10 rounded-[3rem] border border-stone-100 shadow-xl">
+                        <div className="flex-grow bg-white/70 backdrop-blur-xl p-6 md:p-10 rounded-3xl md:rounded-[3rem] border border-stone-100 shadow-xl">
                             
-                            <h2 className="text-2xl md:text-4xl font-extrabold text-stone-900 mb-10 tracking-tight">
+                            <h2 className="text-2xl md:text-4xl font-extrabold text-stone-900 mb-8 md:mb-10 tracking-tight">
                                 Shipping <span className="text-amber-600 italic font-serif">Information</span>
                             </h2>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8">
                                 
                                 <div className="md:col-span-2">
                                     <label className="text-xs font-bold text-stone-400 mb-2 block">
@@ -187,8 +187,8 @@ const Checkout = () => {
                                 </div>
                             </div>
 
-                            <div className="mt-16">
-                                <h3 className="text-xl font-black text-stone-900 mb-8">Payment Method</h3>
+                            <div className="mt-10 md:mt-16">
+                                <h3 className="text-lg md:text-xl font-black text-stone-900 mb-6 md:mb-8">Payment Method</h3>
 
                                 <div className="grid md:grid-cols-2 gap-4">
                                     
@@ -224,10 +224,10 @@ const Checkout = () => {
                             </div>
                         </div>
 
-                        <div className="lg:w-96 w-full">
-                            <div className="bg-gradient-to-br from-white to-stone-50 p-8 rounded-[3rem] border border-stone-100 sticky top-32 shadow-2xl shadow-stone-900/5">
+                        <div className="lg:w-[400px] w-full">
+                            <div className="bg-gradient-to-br from-white to-stone-50 p-6 md:p-8 rounded-3xl md:rounded-[3rem] border border-stone-100 sticky top-32 shadow-2xl shadow-stone-900/5">
 
-                                <h2 className="text-2xl font-black text-stone-900 mb-8">
+                                <h2 className="text-xl md:text-2xl font-black text-stone-900 mb-6 md:mb-8">
                                     Your <span className="text-amber-600 italic font-serif">Order</span>
                                 </h2>
 

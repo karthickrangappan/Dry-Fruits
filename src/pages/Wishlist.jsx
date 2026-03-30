@@ -2,11 +2,11 @@ import React from 'react';
 import { useShop } from '../context/ShopContext';
 import { Link } from 'react-router-dom';
 import ProductCard from '../components/product/ProductCard';
-import { HiOutlineHeart, HiOutlineShoppingBag } from 'react-icons/hi';
+import { HiOutlineHeart, HiOutlineShoppingBag, HiX } from 'react-icons/hi';
 import PageHeader from '../components/layout/PageHeader';
 
 const Wishlist = () => {
-    const { wishlistItems } = useShop();
+    const { wishlistItems, toggleWishlist } = useShop();
 
     if (wishlistItems.length === 0) {
         return (
@@ -53,8 +53,19 @@ const Wishlist = () => {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                         {wishlistItems.map((product) => (
-                            <div key={product.id} className="animate-in fade-in slide-in-from-bottom duration-700">
+                            <div key={product.id} className="animate-in fade-in slide-in-from-bottom duration-700 relative w-full max-w-[280px] sm:max-w-none mx-auto h-full group/wishlist">
                                 <ProductCard product={product} />
+                                <button
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        toggleWishlist(product);
+                                    }}
+                                    className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 z-[60] bg-white p-2 rounded-full shadow-xl shadow-rose-900/10 border border-stone-100 text-stone-400 hover:text-white hover:bg-rose-500 hover:scale-110 hover:rotate-90 transition-all duration-300 active:scale-95 flex items-center justify-center cursor-pointer"
+                                    title="Remove from wishlist"
+                                >
+                                    <HiX className="w-4 h-4 sm:w-5 sm:h-5" />
+                                </button>
                             </div>
                         ))}
                     </div>

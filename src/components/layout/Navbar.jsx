@@ -32,6 +32,9 @@ const Navbar = () => {
 
     useEffect(() => {
         const handleClickOutside = (event) => {
+            // Prevent closing things when interacting within the mobile menu
+            if (event.target.closest('.mobile-menu-aside')) return;
+            
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
                 setCatDropdown(false);
             }
@@ -209,7 +212,7 @@ const Navbar = () => {
             <div className={`fixed inset-0 bg-stone-900/40 backdrop-blur-sm z-40 transition-opacity duration-300 lg:hidden ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
                 }`} onClick={() => setIsOpen(false)} />
 
-            <aside className={`fixed top-0 right-0 h-full w-[280px] bg-white z-50 shadow-2xl transition-transform duration-500 transform lg:hidden ${isOpen ? 'translate-x-0' : 'translate-x-full'
+            <aside className={`mobile-menu-aside fixed top-0 right-0 h-full w-[280px] bg-white z-50 shadow-2xl transition-transform duration-500 transform lg:hidden ${isOpen ? 'translate-x-0' : 'translate-x-full'
                 }`}>
                 <div className="flex flex-col h-full bg-white shadow-lg py-3">
                     <div className="p-6 flex items-center justify-between border-b border-stone-200 bg-white">
