@@ -7,31 +7,31 @@ const categories = [
     {
         name: "Nuts",
         description: "Premium selection of almonds, cashews, and more.",
-        image: "public/products/Cashews.png",
+        image: "/products/Cashews.png",
         count: products.filter(p => p.category === "Nuts").length
     },
     {
         name: "Dried Fruits",
         description: "Naturally sweet and sun-dried organic fruits.",
-        image: "public/products/Anjeer-Figs.png",
+        image: "/products/Anjeer-Figs.png",
         count: products.filter(p => p.category === "Dried Fruits").length
     },
     {
         name: "Dates",
         description: "Exotic and rich dates imported from the Middle East.",
-        image: "public/products/Black Dates.png",
+        image: "/products/Black Dates.png",
         count: products.filter(p => p.category === "Dates").length
     },
     {
         name: "Seeds",
         description: "Nutritious and crunchy seeds for a healthy lifestyle.",
-        image: "public/products/Pumpkin Seeds.png",
+        image: "/products/Pumpkin Seeds.png",
         count: products.filter(p => p.category === "Seeds").length
     },
     {
         name: "Raisins",
         description: "Golden raisins are small, sweet, and chewy dried grapes. They have a bright yellow to golden color and a delightful tangy-sweet flavor.",
-        image: "public/products/Yellow Raisins.png",
+        image: "/products/Yellow Raisins.png",
         count: products.filter(p => p.category === "Raisins").length
     }
 ];

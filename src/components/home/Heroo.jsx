@@ -7,12 +7,12 @@ import 'swiper/css';
 const bannerProducts = [
   {
     id: 4,
-    image: "public/products/Anjeer-Figs.png",
+    image: "/products/Anjeer-Figs.png",
     name: "Anjeer/Figs"
   },
   {
     id: 1,
-    image: "public/products/Almonds.png",
+    image: "/products/Almonds.png",
     name: "Premium Almonds"
   },
   {

@@ -9,7 +9,7 @@ const categories = [
         id: 1,
         name: "Premium Nuts",
         count: "25+ Varieties",
-        image: "public/products/Almonds.png",
+        image: "/products/Almonds.png",
         color: "bg-amber-100",
         textColor: "text-amber-900"
     },
@@ -17,7 +17,7 @@ const categories = [
         id: 2,
         name: "Raisins",
         count: "10+ Varieties",
-        image: "public/products/Yellow Raisins.png",
+        image: "/products/Yellow Raisins.png",
         color: "bg-purple-100",
         textColor: "text-purple-900"    
     },
@@ -26,7 +26,7 @@ const categories = [
         id: 3,
         name: "Exotic Dates",
         count: "10+ Varieties",
-        image: "public/products/Black Dates.png",
+        image: "/products/Black Dates.png",
         color: "bg-blue-100",
         textColor: "text-blue-900"
     },
@@ -34,7 +34,7 @@ const categories = [
         id: 4,
         name: "Organic Seeds",
         count: "12+ Varieties",
-        image: "public/products/Pumpkin Seeds.png",
+        image: "/products/Pumpkin Seeds.png",
         color: "bg-rose-100",
         textColor: "text-rose-900"
     },
@@ -42,7 +42,7 @@ const categories = [
         id: 5,
         name: "Dried Fruits",
         count: "15+ Varieties",
-        image: "public/products/Anjeer-Figs.png",
+        image: "/products/Anjeer-Figs.png",
         color: "bg-emerald-100",
         textColor: "text-emerald-900"
     },
