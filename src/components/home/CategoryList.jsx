@@ -9,7 +9,7 @@ const categories = [
         id: 1,
         name: "Premium Nuts",
         count: "25+ Varieties",
-        image: "https://kavisdryfruits.com/uploads/f_691ee9fb1328e8.71101389.png",
+        image: "public/products/Almonds.png",
         color: "bg-amber-100",
         textColor: "text-amber-900"
     },
@@ -17,7 +17,7 @@ const categories = [
         id: 2,
         name: "Raisins",
         count: "10+ Varieties",
-        image: "https://kavisdryfruits.com/uploads/f_691eeb2e022154.89898460.png",
+        image: "public/products/Yellow Raisins.png",
         color: "bg-purple-100",
         textColor: "text-purple-900"    
     },
@@ -26,7 +26,7 @@ const categories = [
         id: 3,
         name: "Exotic Dates",
         count: "10+ Varieties",
-        image: "https://kavisdryfruits.com/uploads/f_691eea6661f970.70506074.png",
+        image: "public/products/Black Dates.png",
         color: "bg-blue-100",
         textColor: "text-blue-900"
     },
@@ -34,7 +34,7 @@ const categories = [
         id: 4,
         name: "Organic Seeds",
         count: "12+ Varieties",
-        image: "https://kavisdryfruits.com/uploads/f_691ee7641b6094.37281592.png",
+        image: "public/products/Pumpkin Seeds.png",
         color: "bg-rose-100",
         textColor: "text-rose-900"
     },
@@ -42,7 +42,7 @@ const categories = [
         id: 5,
         name: "Dried Fruits",
         count: "15+ Varieties",
-        image: "https://kavisdryfruits.com/uploads/f_691ee5c2630855.28901325.png",
+        image: "public/products/Anjeer-Figs.png",
         color: "bg-emerald-100",
         textColor: "text-emerald-900"
     },
@@ -75,7 +75,7 @@ const CategoryList = () => {
                     </div>
                     <button
                         onClick={() => navigate('/categories')}
-                        className="inline-flex w-auto self-center md:self-auto px-4 sm:px-6 md:px-8 py-2.5 md:py-4 bg-stone-900 text-white font-bold rounded-xl md:rounded-2xl hover:bg-stone-800 transition-all duration-300 transform hover:-translate-y-1 text-[11px] sm:text-xs md:text-base text-center"
+                        className="inline-flex w-auto self-center md:self-auto px-4 sm:px-6 md:px-8 py-2.5 md:py-4 bg-amber-600 text-white font-bold rounded-xl md:rounded-2xl hover:bg-amber-700 transition-all duration-300 transform hover:-translate-y-1 text-[11px] sm:text-xs md:text-base text-center"
                     >
                         View All Categories
                     </button>

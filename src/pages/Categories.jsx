@@ -7,31 +7,31 @@ const categories = [
     {
         name: "Nuts",
         description: "Premium selection of almonds, cashews, and more.",
-        image: "https://kavisdryfruits.com/uploads/f_691ee9fb1328e8.71101389.png",
+        image: "public/products/Cashews.png",
         count: products.filter(p => p.category === "Nuts").length
     },
     {
         name: "Dried Fruits",
         description: "Naturally sweet and sun-dried organic fruits.",
-        image: "https://kavisdryfruits.com/uploads/f_691ee5c2630855.28901325.png",
+        image: "public/products/Anjeer-Figs.png",
         count: products.filter(p => p.category === "Dried Fruits").length
     },
     {
         name: "Dates",
         description: "Exotic and rich dates imported from the Middle East.",
-        image: "https://kavisdryfruits.com/uploads/f_691eea6661f970.70506074.png",
+        image: "public/products/Black Dates.png",
         count: products.filter(p => p.category === "Dates").length
     },
     {
         name: "Seeds",
         description: "Nutritious and crunchy seeds for a healthy lifestyle.",
-        image: "https://kavisdryfruits.com/uploads/f_691ee7641b6094.37281592.png",
+        image: "public/products/Pumpkin Seeds.png",
         count: products.filter(p => p.category === "Seeds").length
     },
     {
         name: "Raisins",
         description: "Golden raisins are small, sweet, and chewy dried grapes. They have a bright yellow to golden color and a delightful tangy-sweet flavor.",
-        image: "https://kavisdryfruits.com/uploads/f_691eeb2e022154.89898460.png",
+        image: "public/products/Yellow Raisins.png",
         count: products.filter(p => p.category === "Raisins").length
     }
 ];

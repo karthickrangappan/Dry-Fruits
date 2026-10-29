@@ -26,7 +26,7 @@ const Wishlist = () => {
                     </p>
                     <Link
                         to="/shop"
-                        className="inline-flex items-center gap-3 px-8 md:px-12 py-3 md:py-5 bg-stone-900 text-white rounded-2xl md:rounded-3xl font-black shadow-2xl shadow-stone-900/10 hover:bg-amber-600 transition-all transform hover:-translate-y-1 group"
+                        className="inline-flex items-center gap-3 px-8 md:px-12 py-3 md:py-5 bg-amber-600 text-white rounded-2xl md:rounded-3xl font-black shadow-2xl shadow-stone-900/10 hover:bg-amber-700 transition-all transform hover:-translate-y-1 group"
                     >
                         <span className="uppercase tracking-widest text-[10px] md:text-xs">Back to Shopping</span>
                         <HiOutlineShoppingBag className="w-5 h-5 group-hover:scale-110 transition-transform" />

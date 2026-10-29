@@ -55,11 +55,11 @@ const PrivacyPolicy = () => {
                     ))}
                 </div>
                 
-                <div className="mt-20 p-10 bg-stone-50 rounded-[3rem] border border-stone-100 text-center">
-                    <p className="text-stone-400 font-bold uppercase tracking-widest text-xs mb-4">Need more clarity?</p>
-                    <h4 className="text-2xl font-black text-stone-900 mb-6 tracking-tight">Got questions about your data?</h4>
-                    <p className="text-stone-500 mb-8 max-w-md mx-auto">Feel free to reach out to our privacy team for any detailed inquiries regarding your personal information.</p>
-                    <a href="/contact" className="inline-block px-10 py-4 bg-stone-900 text-white font-bold rounded-2xl hover:bg-amber-600 transition-all hover:shadow-xl">
+                <div className="mt-20 p-10 bg-stone-900 rounded-[3rem] border border-stone-100 text-center">
+                    <p className="text-white font-bold uppercase tracking-widest text-xs mb-4">Need more clarity?</p>
+                    <h4 className="text-2xl font-black text-amber-500 mb-6 tracking-tight">Got questions about your data?</h4>
+                    <p className="text-white mb-8 max-w-md mx-auto">Feel free to reach out to our privacy team for any detailed inquiries regarding your personal information.</p>
+                    <a href="/contact" className="inline-block px-10 py-4 bg-amber-600 text-white font-bold rounded-2xl hover:bg-amber-700 transition-all hover:shadow-xl">
                         Contact Privacy Team
                     </a>
                 </div>

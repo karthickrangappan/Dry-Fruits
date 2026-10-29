@@ -73,18 +73,20 @@ const Navbar = () => {
             <div className="max-w-7xl mx-auto px-4 md:px-8">
                 <div className="flex items-center justify-between">
                     <Link to="/" className="flex items-center gap-3 group">
-                        <div className="w-12 h-12 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
-                            <img
-                                src="/logo.png"
-                                alt="KK Dry Fruits Logo"
-                                className="w-full h-full rounded-full object-contain filter drop-shadow-md"
-                            />
-                        </div>
-                        <div className="flex flex-col">
+                        <Link to="/" className="flex items-center gap-3 group">
+                            <div className="w-32 sm:w-36 md:w-40 lg:w-44 xl:w-48 h-12 sm:h-13 md:h-14 flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
+                                <img
+                                    src="/products/logo3.png"
+                                    alt="KK Dry Fruits Logo"
+                                    className="w-full h-full object-contain filter drop-shadow-md"
+                                />
+                            </div>
+                        </Link>
+                        {/* <div className="flex flex-col">
                             <span className="text-xl md:text-2xl font-black text-amber-400 leading-none">
                                 Dry<span className="text-amber-600">Fruits</span>
                             </span>
-                        </div>
+                        </div> */}
                     </Link>
 
                     <div className="hidden lg:flex items-center gap-8">

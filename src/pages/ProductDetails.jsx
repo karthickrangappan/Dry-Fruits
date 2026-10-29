@@ -122,7 +122,7 @@ const ProductDetails = () => {
                                 <div className="flex flex-col">
                                     <span className="text-stone-300 line-through font-black text-xl mb-1 italic">₹{product.oldPrice}</span>
                                     <span className="text-3xl md:text-6xl font-black text-amber-600 tracking-tighter">
-                                        ₹{product.price}
+                                        ₹{product.price * localQuantity}
                                     </span>
                                 </div>
                                 <div className="bg-emerald-50 text-emerald-700 px-3 md:px-4 py-1.5 md:py-2 rounded-xl md:rounded-2xl text-[8px] md:text-[10px] font-black uppercase tracking-widest mb-1.5 md:mb-2 border border-emerald-100">
@@ -163,10 +163,10 @@ const ProductDetails = () => {
                                 <button
                                     onClick={handleBuyNow}
                                     className="col-span-2 sm:col-span-2 lg:col-span-2 flex items-center justify-center gap-2 
-                                                bg-stone-900 text-white py-3 sm:py-4 lg:py-5 
+                                                bg-amber-600 text-white py-3 sm:py-4 lg:py-5 
                                                 rounded-xl sm:rounded-2xl lg:rounded-3xl 
                                                 font-bold uppercase tracking-wider text-[10px] sm:text-xs lg:text-sm
-                                                hover:bg-amber-600 transition-all transform hover:-translate-y-1 active:scale-95 
+                                                hover:bg-amber-700 transition-all transform hover:-translate-y-1 active:scale-95 
                                                 shadow-lg"
                                 >
                                     Proceed to Buy

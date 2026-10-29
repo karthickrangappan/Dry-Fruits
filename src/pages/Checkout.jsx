@@ -216,7 +216,7 @@ const Checkout = () => {
                                         />
                                         <div>
                                             <p className="font-bold">Online Payment</p>
-                                            <p className="text-xs text-stone-400">Secure Checkout</p>
+                                            <p className="text-xs text-amber-600">Secure Checkout</p>
                                         </div>
                                     </label>
 
@@ -262,7 +262,7 @@ const Checkout = () => {
 
                                 <button
                                     onClick={handlePlaceOrder}
-                                    className="w-full mt-8 bg-gradient-to-r from-stone-900 to-stone-700 text-white py-3.5 md:py-5 rounded-2xl md:rounded-3xl font-bold uppercase text-xs md:text-sm hover:from-amber-600 hover:to-amber-500 transition-all active:scale-95 shadow-xl"
+                                    className="w-full mt-8 bg-amber-600 text-white py-3.5 md:py-5 rounded-2xl md:rounded-3xl font-bold uppercase text-xs md:text-sm  hover:bg-amber-700  transition-all active:scale-95 shadow-xl"
                                 >
                                     Confirm Order
                                 </button>

@@ -49,19 +49,19 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-12 mb-10">
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center gap-3 group mb-6">
-              <div className="w-12 h-12 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
-                <img
-                  src="/logo.png"
-                  alt="KK Dry Fruits Logo"
-                  className="w-full h-full rounded-full object-contain filter drop-shadow-md"
-                />
+              <div className="w-32 sm:w-36 md:w-40 lg:w-44 xl:w-48 h-12 sm:h-13 md:h-14 flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
+                                <img
+                                    src="/products/logo3.png"
+                                    alt="KK Dry Fruits Logo"
+                                    className="w-full h-full object-contain filter drop-shadow-md"
+                                />
               </div>
-              <div className="flex flex-col">
+              {/* <div className="flex flex-col">
                 <span className="text-xl md:text-2xl font-black text-amber-400 leading-none">
                   Dry<span className="text-amber-600">Fruits</span>
                 </span>
 
-              </div>
+              </div> */}
             </Link>
             <p className="text-stone-400  text-[10px] md:text-sm text-justify leading-relaxed mb-8 max-w-xs">
               Discover nature's finest treasures. We bring you premium quality dry fruits, nuts, dates, raisins and seeds sourced from the best orchards around the globe.
@@ -133,7 +133,7 @@ const Footer = () => {
                 </div>
                 <div>
                   <p className="text-white font-medium">Headquarters</p>
-                  <p className="text-stone-500">123 Orchards Ave, Harvest Valley, CA 90210</p>
+                  <p className="text-stone-500">Madipakkam, Kanchipuram district, Chennai - 600091, Tamil Nadu, India</p>
                 </div>
               </div>
               <div className="flex items-center gap-4 text-sm group">
@@ -142,7 +142,7 @@ const Footer = () => {
                 </div>
                 <div>
                   <p className="text-white font-medium">Call Us</p>
-                  <p className="text-stone-500">+1 (888) DRY-FRUIT</p>
+                  <p className="text-stone-500">+91 8825425354</p>
                 </div>
               </div>
             </div>

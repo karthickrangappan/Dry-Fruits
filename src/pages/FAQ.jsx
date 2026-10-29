@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PageHeader from '../components/layout/PageHeader';
-import { HiChevronDown } from 'react-icons/hi';
+import { HiChevronDown, HiChevronUp } from 'react-icons/hi';
 
 const FAQ = () => {
     const [openIndex, setOpenIndex] = useState(null);
@@ -34,25 +34,58 @@ const FAQ = () => {
 
     return (
         <main className="bg-white min-h-screen">
-            <PageHeader 
-                title="Frequently Asked Questions" 
+            <PageHeader
+                title="Frequently Asked Questions"
                 subtitle="Everything you need to know about our products, shipping, and more."
             />
-            
+
             <section className="py-24 max-w-4xl mx-auto px-4 md:px-8">
                 <div className="space-y-6">
                     {faqs.map((faq, idx) => (
-                        <div key={idx} className="bg-stone-50 rounded-[2.5rem] border border-stone-100 overflow-hidden group hover:border-amber-200 transition-all">
-                            <button 
-                                onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
+                        <div
+                            key={idx}
+                            className="bg-stone-50 rounded-[2.5rem] border border-stone-100 overflow-hidden group hover:border-amber-200 transition-all"
+                        >
+                            <button
+                                onClick={() =>
+                                    setOpenIndex(openIndex === idx ? null : idx)
+                                }
                                 className="w-full text-left px-8 py-6 flex items-center justify-between gap-6 group-hover:bg-amber-50/50 transition-colors"
                             >
-                                <span className={`text-lg font-black text-stone-900 leading-tight transition-colors ${openIndex === idx ? 'text-amber-600' : ''}`}>{faq.question}</span>
-                                <div className={`w-10 h-10 rounded-2xl flex items-center justify-center bg-white text-stone-400 border border-stone-100 transition-all ${openIndex === idx ? 'rotate-180 bg-stone-900 text-white shadow-lg' : ''}`}>
-                                    <HiChevronDown className="w-6 h-6" />
+                                <span
+                                    className={`text-lg font-black text-stone-900 leading-tight transition-colors ${
+                                        openIndex === idx
+                                            ? 'text-amber-600'
+                                            : ''
+                                    }`}
+                                >
+                                    {faq.question}
+                                </span>
+
+                                {/* FAQ Arrow */}
+                                <div
+                                    className={`w-10 h-10 rounded-2xl flex items-center justify-center border transition-all ${
+                                        openIndex === idx
+                                            ? 'bg-stone-900 text-white border-stone-900 shadow-lg'
+                                            : 'bg-white text-stone-400 border-stone-100'
+                                    }`}
+                                >
+                                    {openIndex === idx ? (
+                                        <HiChevronUp className="w-6 h-6" />
+                                    ) : (
+                                        <HiChevronDown className="w-6 h-6" />
+                                    )}
                                 </div>
                             </button>
-                            <div className={`transition-all duration-500 overflow-hidden ${openIndex === idx ? 'max-h-96' : 'max-h-0'}`}>
+
+                            {/* Answer */}
+                            <div
+                                className={`transition-all duration-500 overflow-hidden ${
+                                    openIndex === idx
+                                        ? 'max-h-96'
+                                        : 'max-h-0'
+                                }`}
+                            >
                                 <div className="px-8 pb-8 pt-2 text-stone-500 font-medium leading-relaxed">
                                     {faq.answer}
                                 </div>
@@ -60,14 +93,29 @@ const FAQ = () => {
                         </div>
                     ))}
                 </div>
-                
+
+                {/* CTA */}
                 <div className="mt-20 text-center bg-stone-900 text-white p-12 rounded-[4rem] shadow-2xl relative overflow-hidden group">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-amber-600/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+
                     <div className="relative z-10">
-                        <p className="text-amber-500 font-black uppercase tracking-[0.3em] text-[10px] mb-4">Still need help?</p>
-                        <h4 className="text-3xl font-black mb-6 tracking-tighter">Can't find what you're looking for?</h4>
-                        <p className="text-stone-400 mb-10 max-w-md mx-auto">Our dedicated customer support team is always ready to assist you with any specific queries you may have.</p>
-                        <a href="/contact" className="inline-block px-12 py-5 bg-amber-600 text-white font-black rounded-3xl hover:bg-white hover:text-stone-900 transition-all transform hover:-translate-y-1 shadow-xl">
+                        <p className="text-amber-500 font-black uppercase tracking-[0.3em] text-[10px] mb-4">
+                            Still need help?
+                        </p>
+
+                        <h4 className="text-3xl font-black mb-6 tracking-tighter">
+                            Can't find what you're looking for?
+                        </h4>
+
+                        <p className="text-stone-400 mb-10 max-w-md mx-auto">
+                            Our dedicated customer support team is always ready
+                            to assist you with any specific queries you may have.
+                        </p>
+
+                        <a
+                            href="/contact"
+                            className="inline-block px-12 py-5 bg-amber-600 text-white font-black rounded-3xl hover:bg-amber-700 transition-all transform hover:-translate-y-1 shadow-xl"
+                        >
                             Chat With Us Now
                         </a>
                     </div>

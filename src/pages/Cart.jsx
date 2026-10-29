@@ -29,7 +29,7 @@ const Cart = () => {
                     </p>
                     <Link
                         to="/shop"
-                        className="inline-flex items-center gap-2 px-6 md:px-10 py-3 md:py-5 bg-amber-600 text-white rounded-2xl md:rounded-3xl font-black shadow-2xl shadow-amber-600/20 hover:bg-stone-900 transition-all transform hover:-translate-y-1 text-xs md:text-base"
+                        className="inline-flex items-center gap-2 px-6 md:px-10 py-3 md:py-5 bg-amber-600 text-white rounded-2xl md:rounded-3xl font-black shadow-2xl shadow-amber-600/20 hover:bg-amber-700 transition-all transform hover:-translate-y-1 text-xs md:text-base"
                     >
                         Explore the Shop
                     </Link>
@@ -143,7 +143,7 @@ const Cart = () => {
                                         setCartCheckout();
                                         navigate("/checkout");
                                     }}
-                                    className="w-full bg-stone-900 text-white py-4 md:py-5 rounded-2xl md:rounded-3xl font-black flex items-center justify-center gap-3 hover:bg-amber-600 transition-all shadow-xl shadow-stone-900/10 transform active:scale-[0.98] group"
+                                    className="w-full bg-amber-600 text-white py-4 md:py-5 rounded-2xl md:rounded-3xl font-black flex items-center justify-center gap-3 hover:bg-amber-700 transition-all shadow-xl shadow-stone-900/10 transform active:scale-[0.98] group"
                                 >
                                     <span className="uppercase tracking-widest text-[10px]">Secure Checkout</span>
                                     <HiArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />

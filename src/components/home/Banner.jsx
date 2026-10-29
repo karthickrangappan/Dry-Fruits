@@ -44,7 +44,7 @@ const Banner = () => {
 
                             <button 
                                 onClick={() => navigate('/shop')}
-                                className="group px-8 py-3 bg-amber-600 text-white font-bold rounded-xl hover:bg-white hover:text-stone-900 transition-all active:scale-95 flex items-center gap-2 shadow-lg"
+                                className="group px-8 py-3 bg-amber-600 text-white font-bold rounded-xl hover:bg-amber-700  transition-all active:scale-95 flex items-center gap-2 shadow-lg"
                             >
                                 <span className="uppercase text-xs tracking-wider">Unlock Now</span>
                                 <HiOutlineArrowRight className="text-lg group-hover:translate-x-1 transition-transform" />
